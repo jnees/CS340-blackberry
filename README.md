@@ -1,2 +1,2 @@
-# CS362-blackberry
-CS362 Databases group project.
+# CS340-blackberry
+CS340 Databases group project.
