@@ -91,7 +91,7 @@ VALUES
 ("Abner", "Benedicto", "abenedicto1r@washington.edu", 2),
 ("Adaline", "Elcott", "aelcott0@whaletails", 1),
 ("Farrah", "Crompton", "fcromptonc@whalewatchers.com", 3),
-("Kristel",	"Seaborne", "kseabornek@whailtales.org", 1),
+("Kristel",	"Seaborne", "kseabornek@whaletales.org", 1),
 ("Deva", "Quiddington",	"dquiddington3@washington.edu",	2);
 
 INSERT INTO Sightings(datetime, latitude, longitude, researcher_id)
