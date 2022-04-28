@@ -1,0 +1,23 @@
+{
+  "name": "cs340-blackberry",
+  "version": "1.0.0",
+  "description": "CS340 group projet",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jnees/CS340-blackberry.git"
+  },
+  "author": "Erin Eckerman & Joshua Nees",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jnees/CS340-blackberry/issues"
+  },
+  "homepage": "https://github.com/jnees/CS340-blackberry#readme",
+  "dependencies": {
+    "express": "^4.18.0",
+    "nodemon": "^2.0.15"
+  }
+}
