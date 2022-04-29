@@ -10,6 +10,8 @@ import Species from "./components/species"
 import Researchers from "./components/researchers"
 import Organizations from "./components/organizations"
 import Sightings from "./components/sightings"
+import SpeciesInsertForm from "./components/forms/species_insert";
+import SpeciesUpdateForm from "./components/forms/species_update";
 
 function App() {
   return (
@@ -22,10 +24,11 @@ function App() {
           <Route path="/researchers" element={<Researchers />} />
           <Route path="/organizations" element={<Organizations />} />
           <Route path="/sightings" element={<Sightings />} />
+          <Route path="/species/insert" element={<SpeciesInsertForm />} />
+          <Route path="/species/update" element={<SpeciesUpdateForm />} />
         </Routes>
     </div>
 
-    
   );
 }
 

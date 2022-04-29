@@ -1,5 +1,7 @@
 import React from 'react';
+import SpeciesButtonGroup from './button_groups/species_buttons';
 const axios = require('axios').default;
+
 
 export default class Species extends React.Component {
 
@@ -22,9 +24,9 @@ export default class Species extends React.Component {
     
     render() {
       return (
-        <div>
-          <h1>Species</h1>
-          <p>{this.state.data[0] ? "" : "Data loading"}</p>
+        <div class="container">
+          <h1 class="text-center">Species</h1>
+          <SpeciesButtonGroup />
           <table class="table">
             <thead>
               <tr>
@@ -40,11 +42,19 @@ export default class Species extends React.Component {
                     <th scope="row">{row.species_id}</th>
                     <td>{row.name}</td>
                     <td>{row.description}</td>
+                    <td><button type="button" class="btn btn-light">Modify</button></td>
+                    <td><button type="button" class="btn btn-danger">Delete</button></td>
                   </tr>
                 )
               }
             </tbody>
           </table>
+
+          {this.state.data[0] ? "" : 
+            <div class="spinner-border" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          }
         </div>
       ) 
     }

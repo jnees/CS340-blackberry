@@ -13,7 +13,7 @@ export default class AppNavbar extends React.Component {
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/whales">Whales</a>
+                            <a class="nav-link" href="/whales">Whales</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/species">Species</a>
