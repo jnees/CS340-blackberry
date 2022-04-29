@@ -30,3 +30,5 @@ router.put("/", (req, res) => {
 router.delete("/", (req, res) => {
     res.send("This route should handle updating data in the organizations table.")
  });
+
+ module.exports = router;

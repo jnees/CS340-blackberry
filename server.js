@@ -1,9 +1,10 @@
 const express = require("express");
 const species = require("./routes/api/species");
 const whales = require("./routes/api/whales");
-const researchers = require("/routes/api/researchers");
+const researchers = require("./routes/api/researchers");
 const organizations = require("./routes/api/organizations");
-const sightings = require("/routes/api/sightings");
+const sightings = require("./routes/api/sightings");
+const sightings_whales = require("./routes/api/sightings_whales");
 
 const app = express();
 
