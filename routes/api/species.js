@@ -8,6 +8,7 @@ const router = express.Router();
 // @route GET api/species
 // @desc Get all records from the species table
 router.get("/", (req, res) => {
+    console.log("Received species get req.")
     dummy_data = [
         {
             "species_id" : 1,
