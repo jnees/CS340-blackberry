@@ -1,16 +1,35 @@
 const express = require("express");
+const species = require("./routes/api/species");
+const whales = require("./routes/api/whales");
+const researchers = require("/routes/api/researchers");
+const organizations = require("./routes/api/organizations");
+const sightings = require("/routes/api/sightings");
+
 const app = express();
+
+// Add req.body to all requests
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }))
 
 app.get("/", (req, res) =>{
     res.send("Hello world")
 });
+
+// API routes
+app.use("/api/species", species);
+app.use("/api/whales", whales);
+app.use("/api/researchers", researchers);
+app.use("/api/organizations", organizations);
+app.use("/api/sightings", sightings);
+app.use("/api/sightings_whales", sightings_whales);
+
 
 // Redirect all unidentified routes
 app.get('/*', (req, res) => {
     res.redirect("/");
 })
 
-port = 53588
+const port = process.env.port || 53588;
 app.listen(port, ()=>{
     console.log(`Listening on port: ${port}`);
 });
