@@ -8,7 +8,35 @@ const router = express.Router();
 // @route GET api/species
 // @desc Get all records from the species table
 router.get("/", (req, res) => {
-    res.send("This should return records from the species table");
+    dummy_data = [
+        {
+            "species_id" : 1,
+            "name" : "Orca",
+            "description" : "Black-and-white patterned body."
+        },
+        {
+            "species_id" : 2,
+            "name" : "Gray",
+            "description" : "Gray patches and white mottling on dark skin."
+        },
+        {
+            "species_id" : 3,
+            "name" : "Humpback",
+            "description" : "Long pectoral fins and a knobbly head."
+        },
+        {
+            "species_id" : 4,
+            "name" : "Minke",
+            "description" : "Black to dark gray with a pale chevron on the back behind the head and above the flippers."
+        },
+        {
+            "species_id" : 5,
+            "name" : "Pacific White Sided Dolphin",
+            "description" : "Dark gray flippers and dorsal fin. Light gray patches on the sides."
+        }
+    ]
+
+    res.json(dummy_data);
 });
 
 
