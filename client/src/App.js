@@ -12,6 +12,7 @@ import Organizations from "./components/organizations"
 import Sightings from "./components/sightings"
 import SpeciesInsertForm from "./components/forms/species_insert";
 import SpeciesUpdateForm from "./components/forms/species_update";
+import SpeciesDeleteForm from "./components/forms/species_delete";
 
 function App() {
   return (
@@ -25,7 +26,8 @@ function App() {
           <Route path="/organizations" element={<Organizations />} />
           <Route path="/sightings" element={<Sightings />} />
           <Route path="/species/insert" element={<SpeciesInsertForm />} />
-          <Route path="/species/update" element={<SpeciesUpdateForm />} />
+          <Route path="/species/update/:id/:name/:description" element={<SpeciesUpdateForm />} />
+          <Route path="/species/delete/:id/:name/:description" element={<SpeciesDeleteForm />} />
         </Routes>
     </div>
 

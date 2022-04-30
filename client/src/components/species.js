@@ -2,7 +2,6 @@ import React from 'react';
 import SpeciesButtonGroup from './button_groups/species_buttons';
 const axios = require('axios').default;
 
-
 export default class Species extends React.Component {
 
     constructor(props){
@@ -42,8 +41,16 @@ export default class Species extends React.Component {
                     <th scope="row">{row.species_id}</th>
                     <td>{row.name}</td>
                     <td>{row.description}</td>
-                    <td><button type="button" class="btn btn-light">Modify</button></td>
-                    <td><button type="button" class="btn btn-danger">Delete</button></td>
+                    <td>
+                      <a 
+                        href={"/species/update/" + row.species_id + "/" + row.name + "/" + row.description} 
+                        class="btn btn-light btn-md"
+                      >Modify</a>
+                    </td>
+                    <td>
+                      <a 
+                        href={"/species/delete/" + row.species_id + "/" + row.name + "/" + row.description}
+                        class="btn btn-danger btn-md">Delete</a></td>
                   </tr>
                 )
               }
