@@ -1,5 +1,6 @@
 import React from 'react';
 
+// Researchers table page
 export default class Researchers extends React.Component {
     
     render() {

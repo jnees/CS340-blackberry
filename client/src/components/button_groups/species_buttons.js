@@ -1,5 +1,6 @@
 import React from 'react';
 
+// Button group for refresh/insert into species table.
 export default class SpeciesButtonGroup extends React.Component {
     
     render() {

@@ -2,6 +2,7 @@ import { React } from 'react';
 import { useParams } from 'react-router-dom';
 import SpeciesButtonGroup from '../button_groups/species_buttons';
 
+// Delete confirmation page for species
 // Uses a function instead of class to make getting
 // the query parameters easier (useParams hook)
 const SpeciesDeleteForm = () => {

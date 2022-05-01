@@ -2,6 +2,7 @@ import {React, useState} from 'react';
 import { useParams } from 'react-router-dom';
 import SpeciesButtonGroup from '../button_groups/species_buttons';
 
+// Form for modifying a record in the species table. Prepopulates the existing record.
 // Uses a function instead of class to make getting
 // the query parameters easier (useParams hook)
 const SpeciesUpdateForm = () => {

@@ -2,6 +2,7 @@ import React from 'react';
 import SpeciesButtonGroup from './button_groups/species_buttons';
 const axios = require('axios').default;
 
+// Species Table page
 export default class Species extends React.Component {
 
     constructor(props){

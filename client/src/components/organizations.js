@@ -1,5 +1,6 @@
 import React from 'react';
 
+// Organizations table page.
 export default class Organizations extends React.Component {
     
     render() {

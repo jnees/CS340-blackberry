@@ -14,6 +14,9 @@ import SpeciesInsertForm from "./components/forms/species_insert";
 import SpeciesUpdateForm from "./components/forms/species_update";
 import SpeciesDeleteForm from "./components/forms/species_delete";
 
+/* The App() function always displays the navbar. It also acts as the router for the
+entire app by showing whichever component the user navigates to below the nav bar.
+Add new routes here as needed. */
 function App() {
   return (
     <div>
