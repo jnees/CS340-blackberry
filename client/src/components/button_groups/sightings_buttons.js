@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Button group for refresh/insert into species table.
-export default class SightingsBUttonsGroup extends React.Component {
+export default class SightingsButtonsGroup extends React.Component {
     
     render() {
       return (
