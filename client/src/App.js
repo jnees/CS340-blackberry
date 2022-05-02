@@ -5,26 +5,30 @@ import {
 import './App.css';
 import AppNavbar from './components/navbar';
 import Home from "./components/home";
-import Whales from "./components/whales"
-import Species from "./components/species"
-import Researchers from "./components/researchers"
-import Organizations from "./components/organizations"
-import Sightings from "./components/sightings"
-import SightingsWhales from "./components/sightings_whales"
+import Whales from "./components/whales";
+import Species from "./components/species";
+import Researchers from "./components/researchers";
+import Organizations from "./components/organizations";
+import Sightings from "./components/sightings";
+import SightingsWhales from "./components/sightings_whales";
 import SpeciesInsertForm from "./components/forms/species_insert";
 import SpeciesUpdateForm from "./components/forms/species_update";
 import WhalesUpdateForm from "./components/forms/whales_update";
 import ResearchersUpdateForm from "./components/forms/researchers_update";
 import OrganizationsUpdateForm from "./components/forms/organizations_update";
 import SightingsUpdateForm from "./components/forms/sightings_update";
-import SightingsWhalesUpdateForm from "./components/forms/sightings_whales_update"
-import WhalesInsertForm from "./components/forms/whales_insert"
-import ResearchersInsertForm from "./components/forms/researchers_insert"
-import OrganizationsInsertForm from "./components/forms/organizations_insert"
-import SightingsInsertForm from "./components/forms/sightings_insert"
-import SightingsWhalesInsertForm from "./components/forms/sightings_whales_insert"
-
+import SightingsWhalesUpdateForm from "./components/forms/sightings_whales_update";
+import WhalesInsertForm from "./components/forms/whales_insert";
+import ResearchersInsertForm from "./components/forms/researchers_insert";
+import OrganizationsInsertForm from "./components/forms/organizations_insert";
+import SightingsInsertForm from "./components/forms/sightings_insert";
+import SightingsWhalesInsertForm from "./components/forms/sightings_whales_insert";
 import SpeciesDeleteForm from "./components/forms/species_delete";
+import WhalesDeleteForm from "./components/forms/whales_delete";
+import ResearchersDeleteForm from "./components/forms/researchers_delete"
+import OrganizationsDeleteForm from "./components/forms/organizations_delete"
+import SightingsDeleteForm from "./components/forms/sightings_delete"
+import SightingsWhalesDeleteForm from "./components/forms/sightings_whales_delete"
 
 /* The App() function always displays the navbar. It also acts as the router for the
 entire app by showing whichever component the user navigates to below the nav bar.
@@ -57,6 +61,14 @@ function App() {
           <Route path="/sightings_whales/update/:id/:sighting_id/:whale_id" element={<SightingsWhalesUpdateForm />} />
 
           <Route path="/species/delete/:id/:name/:description" element={<SpeciesDeleteForm />} />
+          <Route path="/whales/delete/:id/:name/:birthyear/:is_female/:is_transient/:species_id" element={<WhalesDeleteForm />} />
+          <Route path="/researchers/delete/:id/:first_name/:last_name/:email/:organization_id" element={<ResearchersDeleteForm />} />
+          <Route path="/organizations/delete/:id/:name/:type" element={<OrganizationsDeleteForm />} />
+          <Route path="/sightings/delete/:id/:datetime/:latitude/:longitude/:researcher_id" element={<SightingsDeleteForm />} />
+          <Route path="/sightings_whales/delete/:id/:sighting_id/:whale_id" element={<SightingsWhalesDeleteForm />} />
+
+
+
         </Routes>
     </div>
 
