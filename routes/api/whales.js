@@ -8,7 +8,42 @@ const router = express.Router();
 // @route GET api/whales
 // @desc Get all records from the whales table
 router.get("/", (req, res) => {
-    res.send("This should return records from the whales table");
+    dummy_data = [
+        {
+            "whale_id" : 1,
+            "name" : "Tahlequah",
+            "birthyear" : 1998,
+            "is_female" : 1,
+            "is_transient" : 0,
+            "species_id" : 1
+        },
+        {
+            "whale_id" : 2,
+            "name" : "Blackberry",
+            "birthyear" : 1991,
+            "is_female" : 0,
+            "is_transient" : 0,
+            "species_id" : 1
+        },
+        {
+            "whale_id" : 3,
+            "name" : "Oreo",
+            "birthyear" : 1985,
+            "is_female" : 1,
+            "is_transient" : 0,
+            "species_id" : 1
+        },
+        {
+            "whale_id" : 4,
+            "name" : "Alki",
+            "birthyear" : 1999,
+            "is_female" : 1,
+            "is_transient" : 0,
+            "species_id" : 1
+        }
+    ]
+
+    res.json(dummy_data);
 });
 
 

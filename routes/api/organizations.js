@@ -8,7 +8,24 @@ const router = express.Router();
 // @route GET api/organizations
 // @desc Get all records from the organizations table
 router.get("/", (req, res) => {
-    res.send("This should return records from the organizations table");
+    dummy_data = [
+        {
+            "organization_id" : 1,
+            "name" : "Whale Tales",
+            "type" : "Non-profit"
+        },
+        {
+            "organization_id" : 2,
+            "name" : "University of Washington",
+            "type" : "Educational"
+        },
+        {
+            "organization_id" : 3,
+            "name" : "Whale Watchers",
+            "type" : "Tourism"
+        }
+    ]
+    res.json(dummy_data);
 });
 
 

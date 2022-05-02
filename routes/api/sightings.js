@@ -8,7 +8,45 @@ const router = express.Router();
 // @route GET api/sightings
 // @desc Get all records from the sightings table
 router.get("/", (req, res) => {
-    res.send("This should return records from the sightings table");
+    dummy_data = [
+        {
+            "sighting_id" : 1,
+            "datetime" : "2021-03-27 18:19:00",
+            "latitude" : 47.614081,
+            "longitude" : -122.389926,
+            "researcher_id" : 1
+        },
+        {
+            "sighting_id" : 2,
+            "datetime" : "2021-09-29 02:45:00",
+            "latitude" : 47.648136,
+            "longitude" : -122.493726,
+            "researcher_id" : 3
+        },
+        {
+            "sighting_id" : 3,
+            "datetime" : "2021-04-26 07:19:00",
+            "latitude" : 47.739778,
+            "longitude" : -122.458992,
+            "researcher_id" : 4
+        },
+        {
+            "sighting_id" : 4,
+            "datetime" : "2021-03-19 07:39:00",
+            "latitude" : 47.577108,
+            "longitude" : -122.440209,
+            "researcher_id" : 2
+        },
+        {
+            "sighting_id" : 5,
+            "datetime" : "2021-04-30 05:04:00",
+            "latitude" : 47.546325,
+            "longitude" : -122.446280,
+            "researcher_id" : 5
+        }
+    ]
+
+    res.send(dummy_data);
 });
 
 

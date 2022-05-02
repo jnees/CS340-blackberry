@@ -8,7 +8,45 @@ const router = express.Router();
 // @route GET api/researchers
 // @desc Get all records from the researchers table
 router.get("/", (req, res) => {
-    res.send("This should return records from the researchers table");
+    dummy_data = [
+        {
+            "researcher_id" : 1,
+            "first_name" : "Abner",
+            "last_name" : "Benedicto",
+            "email" : "abenedicto1r@washington.edu",
+            "organization_id" : 2
+        },
+        {
+            "researcher_id" : 2,
+            "first_name" : "Adaline",
+            "last_name" : "Elcott",
+            "email" : "aelcott0@whaletails",
+            "organization_id" : 1
+        },
+        {
+            "researcher_id" : 3,
+            "first_name" : "Farrah",
+            "last_name" : "Crompton",
+            "email" : "fcromptonc@whalewatchers.com",
+            "organization_id" : 3
+        },
+        {
+            "researcher_id" : 4,
+            "first_name" : "Kristel",
+            "last_name" : "Seaborne",
+            "email" : "kseabornek@whaletales.org",
+            "organization_id" : 1
+        },
+        {
+            "researcher_id" : 5,
+            "first_name" : "Deva",
+            "last_name" : "Quiddington",
+            "email" : "dquiddington3@washington.edu",
+            "organization_id" : 2
+        }
+    ];
+
+    res.json(dummy_data);
 });
 
 

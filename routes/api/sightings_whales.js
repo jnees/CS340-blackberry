@@ -8,7 +8,60 @@ const router = express.Router();
 // @route GET api/sightings_whales
 // @desc Get all records from the sightings_whales table
 router.get("/", (req, res) => {
-    res.send("This should return records from the sightings_whales table");
+    dummy_data = [
+        {
+            "sighting_whale_id" : 1,
+            "sighting_id" : 1,
+            "whale_id" : 1
+        },
+        {
+            "sighting_whale_id" : 2,
+            "sighting_id" : 1,
+            "whale_id" : 2
+        },
+        {
+            "sighting_whale_id" : 3,
+            "sighting_id" : 2,
+            "whale_id" : 4
+        },
+        {
+            "sighting_whale_id" : 4,
+            "sighting_id" : 3,
+            "whale_id" : 1
+        },
+        {
+            "sighting_whale_id" : 5,
+            "sighting_id" : 3,
+            "whale_id" : 2
+        },
+        {
+            "sighting_whale_id" : 6,
+            "sighting_id" : 3,
+            "whale_id" : 3
+        },
+        {
+            "sighting_whale_id" : 7,
+            "sighting_id" : 4,
+            "whale_id" : 3
+        },
+        {
+            "sighting_whale_id" : 8,
+            "sighting_id" : 4,
+            "whale_id" : 4
+        },
+        {
+            "sighting_whale_id" : 9,
+            "sighting_id" : 5,
+            "whale_id" : 1
+        },
+        {
+            "sighting_whale_id" : 10,
+            "sighting_id" : 5,
+            "whale_id" : 3
+        }
+    ]
+
+    res.send(dummy_data);
 });
 
 

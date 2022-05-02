@@ -1,6 +1,7 @@
 import React from 'react';
 import SpeciesButtonGroup from '../button_groups/species_buttons';
 
+// Form for inserting records into the species table.
 export default class SpeciesInsertForm extends React.Component {
     
     render() {
