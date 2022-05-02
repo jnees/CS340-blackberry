@@ -18,6 +18,11 @@ import ResearchersUpdateForm from "./components/forms/researchers_update";
 import OrganizationsUpdateForm from "./components/forms/organizations_update";
 import SightingsUpdateForm from "./components/forms/sightings_update";
 import SightingsWhalesUpdateForm from "./components/forms/sightings_whales_update"
+import WhalesInsertForm from "./components/forms/whales_insert"
+import ResearchersInsertForm from "./components/forms/researchers_insert"
+import OrganizationsInsertForm from "./components/forms/organizations_insert"
+import SightingsInsertForm from "./components/forms/sightings_insert"
+import SightingsWhalesInsertForm from "./components/forms/sightings_whales_insert"
 
 import SpeciesDeleteForm from "./components/forms/species_delete";
 
@@ -38,6 +43,11 @@ function App() {
           <Route path="/sightings_whales" element={<SightingsWhales />} />
           
           <Route path="/species/insert" element={<SpeciesInsertForm />} />
+          <Route path="/whales/insert" element={<WhalesInsertForm />} />
+          <Route path="/researchers/insert" element={<ResearchersInsertForm />} />
+          <Route path="/organizations/insert" element={<OrganizationsInsertForm />} />
+          <Route path="/sightings/insert" element={<SightingsInsertForm />} />
+          <Route path="/sightings_whales/insert" element={<SightingsWhalesInsertForm />} />
 
           <Route path="/species/update/:id/:name/:description" element={<SpeciesUpdateForm />} />
           <Route path="/whales/update/:id/:name/:birthyear/:is_female/:is_transient/:species_id" element={<WhalesUpdateForm />} />

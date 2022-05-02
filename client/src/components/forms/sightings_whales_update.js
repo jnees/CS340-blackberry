@@ -16,7 +16,7 @@ const SightingsWhalesUpdateForm = () => {
 
     return (
         <div>
-        <h1 class="text-center">Sightings/Whales</h1>
+        <h1 class="text-center">Sighting/Whale</h1>
         <SightingsWhalesButtonsGroup />
         <div class="container">
             <p>{"Update record for sighting_whale " + id + " :"}</p>
