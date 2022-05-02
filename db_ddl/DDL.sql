@@ -23,6 +23,7 @@ CREATE TABLE Whales (
     species_id INT(11), 
 	PRIMARY KEY (whale_id),
     FOREIGN KEY (species_id) REFERENCES Species(species_id)
+    ON DELETE SET NULL
 );
 
 CREATE TABLE Organizations (
