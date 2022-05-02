@@ -10,6 +10,7 @@ import Species from "./components/species"
 import Researchers from "./components/researchers"
 import Organizations from "./components/organizations"
 import Sightings from "./components/sightings"
+import SightingsWhales from "./components/sightings_whales"
 import SpeciesInsertForm from "./components/forms/species_insert";
 import SpeciesUpdateForm from "./components/forms/species_update";
 import SpeciesDeleteForm from "./components/forms/species_delete";
@@ -28,6 +29,8 @@ function App() {
           <Route path="/researchers" element={<Researchers />} />
           <Route path="/organizations" element={<Organizations />} />
           <Route path="/sightings" element={<Sightings />} />
+          <Route path="/sightings_whales" element={<SightingsWhales />} />
+
           <Route path="/species/insert" element={<SpeciesInsertForm />} />
           <Route path="/species/update/:id/:name/:description" element={<SpeciesUpdateForm />} />
           <Route path="/species/delete/:id/:name/:description" element={<SpeciesDeleteForm />} />
