@@ -12,6 +12,11 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 
+// Use the React client build (for Heroku deployment)
+if (process.env.NODE_ENV === 'production'){
+    app.use(express.static('client/build'));
+}
+
 app.get("/", (req, res) =>{
     res.send("Hello world")
 });
