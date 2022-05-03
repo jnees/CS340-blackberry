@@ -34,7 +34,7 @@ app.use("/api/sightings_whales", sightings_whales);
 
 // Redirect all unidentified routes
 app.get('/*', (req, res) => {
-    res.redirect("/");
+    res.sendFile(path.resolve(__dirname + '/client/build/index.html'))
 })
 
 const port = process.env.PORT || 53588;
