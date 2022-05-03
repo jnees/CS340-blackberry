@@ -7,7 +7,7 @@ export default class WhalesInsertForm extends React.Component {
     render() {
       return (
         <div>
-            <h1 class="text-center">Whale</h1>
+            <h1 class="text-center">Whales</h1>
             <WhalesButtonsGroup />
             <div class="container">
             <form>

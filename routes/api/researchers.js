@@ -20,7 +20,7 @@ router.get("/", (req, res) => {
             "researcher_id" : 2,
             "first_name" : "Adaline",
             "last_name" : "Elcott",
-            "email" : "aelcott0@whaletails",
+            "email" : "aelcott0@whaletales.org",
             "organization_id" : 1
         },
         {

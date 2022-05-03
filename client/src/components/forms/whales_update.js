@@ -19,7 +19,7 @@ const WhalesUpdateForm = () => {
 
     return (
         <div>
-        <h1 class="text-center">Whale</h1>
+        <h1 class="text-center">Whales</h1>
         <WhalesButtonsGroup />
         <div class="container">
             <p>{"Update record for whale_id " + id + " :"}</p>

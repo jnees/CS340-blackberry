@@ -7,7 +7,7 @@ export default class OrganizationsInsertForm extends React.Component {
     render() {
       return (
         <div>
-            <h1 class="text-center">Organization</h1>
+            <h1 class="text-center">Organizations</h1>
             <OrganizationsButtonsGroup />
             <div class="container">
             <form>

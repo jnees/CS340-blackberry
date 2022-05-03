@@ -16,7 +16,7 @@ const OrganizationsUpdateForm = () => {
 
     return (
         <div>
-        <h1 class="text-center">Organization</h1>
+        <h1 class="text-center">Organizations</h1>
         <OrganizationsButtonsGroup />
         <div class="container">
             <p>{"Update record for organization_id " + id + " :"}</p>

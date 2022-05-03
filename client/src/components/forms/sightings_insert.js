@@ -7,7 +7,7 @@ export default class SightingsInsertForm extends React.Component {
     render() {
       return (
         <div>
-            <h1 class="text-center">Sighting</h1>
+            <h1 class="text-center">Sightings</h1>
             <SightingsButtonsGroup />
             <div class="container">
             <form>
