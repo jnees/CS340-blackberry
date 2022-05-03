@@ -22,6 +22,7 @@
   "homepage": "https://github.com/jnees/CS340-blackberry#readme",
   "dependencies": {
     "express": "^4.18.0",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "path": "^0.12.7"
   }
 }

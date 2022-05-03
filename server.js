@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require('path');
 const species = require("./routes/api/species");
 const whales = require("./routes/api/whales");
 const researchers = require("./routes/api/researchers");
@@ -14,7 +15,7 @@ app.use(express.urlencoded({ extended: true }))
 
 // Use the React client build (for Heroku deployment)
 if (process.env.NODE_ENV === 'production'){
-    app.use(express.static('client/build'));
+    app.use(express.static(path.join(__dirname, 'client/build')));
 }
 
 app.get("/", (req, res) =>{
