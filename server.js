@@ -17,6 +17,7 @@ app.use(express.urlencoded({ extended: true }))
 if (process.env.NODE_ENV === 'production'){
     app.use(express.static(path.join(__dirname, 'client/build')));
 }
+console.log("path to build: " + path.join(__dirname, 'client/build'))
 
 app.get("/", (req, res) =>{
     res.send("Hello world")
