@@ -20,7 +20,7 @@ const SightingsUpdateForm = () => {
 
     return (
         <div>
-        <h1 class="text-center">Sightings</h1>
+        <h1 class="text-center">Update Sighting</h1>
         <SightingsButtonsGroup />
         <div class="container">
             <p>{"Update record for sighting_id " + id + " :"}</p>

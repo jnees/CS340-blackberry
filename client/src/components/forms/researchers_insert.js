@@ -7,7 +7,7 @@ export default class ResearchersInsertForm extends React.Component {
     render() {
       return (
         <div>
-            <h1 class="text-center">Researchers</h1>
+            <h1 class="text-center">Add New Researcher</h1>
             <ResearchersButtonsGroup />
             <div class="container">
             <form>

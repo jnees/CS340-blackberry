@@ -16,7 +16,7 @@ const SpeciesUpdateForm = () => {
 
     return (
         <div>
-        <h1 class="text-center">Species</h1>
+        <h1 class="text-center">Update Species</h1>
         <SpeciesButtonGroup />
         <div class="container">
             <p>{"Update record for species_id " + id + " :"}</p>

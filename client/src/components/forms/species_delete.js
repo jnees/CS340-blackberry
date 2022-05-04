@@ -12,7 +12,7 @@ const SpeciesDeleteForm = () => {
 
     return (
         <div class="container">
-            <h1 class="text-center">Species</h1>
+            <h1 class="text-center">Delete Species</h1>
             <SpeciesButtonGroup />
             <div class="container text-left">
                 <div class="row">

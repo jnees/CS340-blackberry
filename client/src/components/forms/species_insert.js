@@ -7,7 +7,7 @@ export default class SpeciesInsertForm extends React.Component {
     render() {
       return (
         <div>
-            <h1 class="text-center">Species</h1>
+            <h1 class="text-center">Add New Species</h1>
             <SpeciesButtonGroup />
             <div class="container">
             <form>

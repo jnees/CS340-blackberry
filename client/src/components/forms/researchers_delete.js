@@ -12,7 +12,7 @@ const ResearchersDeleteForm = () => {
 
     return (
         <div class="container">
-            <h1 class="text-center">Whales</h1>
+            <h1 class="text-center">Delete Researcher</h1>
             <ResearchersButtonsGroup />
             <div class="container text-left">
                 <div class="row">
