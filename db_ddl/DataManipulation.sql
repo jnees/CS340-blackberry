@@ -90,7 +90,7 @@ UPDATE Researchers SET first_name = :first_name, last_name = :last_name, email =
 -- Sightings:Whales is M:M relationship maintained in the Sightings_Whales intersection table. The backend will store the list of whale_ids entered in the form in memory.
 -- The delete statement below will catch and remove any Sightings_Whales records of whale_ids removed from the record and the insert will individually add any new additions
 -- Sightings_Whales table has a constraint that will prevent insertion of a record with a duplicate sighting_id/whale_id combination 
-UPDATE Sightings SET datetime = :datetime, latitude = :latitude, longitude = :longitude, researcher_id = :researcher_id;
+UPDATE Sightings SET datetime = :datetime, latitude = :latitude, longitude = :longitude, researcher_id = :researcher_id WHERE sighting_id = :sighting_id;
 
 DELETE FROM Sightings_Whales WHERE sighting_id = :sighting_id AND whale_id NOT IN(:whale_ids);
 
