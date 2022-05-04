@@ -2,14 +2,21 @@ import React from 'react';
 import SightingsButtonGroup from './button_groups/sightings_buttons';
 const axios = require('axios').default;
 
-// Sightings table page
+/* 
+  Sightings table page. Displays sightings data along with the whale_id's from each sighting
+  which are taken from the Sightings_Whales table
+*/
 export default class Sightings extends React.Component {
 
   constructor(props){
     super(props);
 
+    // data is pulled on refresh from API. 
+    // Filtered data is calculated when the user updates the input.
     this.state = {
       data: [],
+      sightingIdFilter: null,
+      filteredData: []
     };
   }
 
@@ -17,25 +24,39 @@ export default class Sightings extends React.Component {
     this.updateData();
   }
 
+  // API data refresh
   async updateData() {
     const res = await axios.get('/api/sightings');
-    this.setState({data: res.data})
+    this.setState(
+      {
+        data: res.data, 
+        filteredData: res.data
+      })
   };
+
+  // Adjusts state of filteredData based on user input
+  updateIdFilter(val){
+    // Empty filter -> set to show all data.
+    if (!val) {
+      this.setState(
+        {filteredData: this.state.data}
+      )
+      return;
+    }
+    
+    // User applied filter -> filter records by sighting_id
+    this.setState(
+      {
+        filteredData: this.state.data.filter(row => row.sighting_id.toString() === val)
+      }
+    )
+  }
     
   render() {
     return (
       <div class="container">
         <h1 class="text-center">Sightings</h1>
         <SightingsButtonGroup />
-        <div class="select">
-          <select class="form-control" id="whale_id">
-            <option selected>Filter on whale_id</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-          </select>
-        </div>
         <table class="table">
           <thead>
             <tr>
@@ -46,10 +67,13 @@ export default class Sightings extends React.Component {
               <th scope="col">researcher_id</th>
               <th scope="col">whale_ids</th>
             </tr>
+            <tr>
+              <input placeholder="filter" onChange={e => this.updateIdFilter(e.target.value)} />
+            </tr>
           </thead>
           <tbody>
             {
-              this.state.data.map(row => 
+              this.state.filteredData.map(row => 
                 <tr>
                   <th scope="row">{row.sighting_id}</th>
                   <td>{row.datetime}</td>
