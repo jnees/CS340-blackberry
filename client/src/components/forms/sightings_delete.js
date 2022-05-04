@@ -8,7 +8,7 @@ import SightingsButtonsGroup from '../button_groups/sightings_buttons';
 const SightingsDeleteForm = () => {
 
     // Get id from url
-    const { id, datetime, latitude, longitude, researcher_id } = useParams();
+    const { id, datetime, latitude, longitude, researcher_id, whale_ids } = useParams();
 
     return (
         <div class="container">
@@ -58,6 +58,14 @@ const SightingsDeleteForm = () => {
                     </div>
                     <div class="col-sm">
                         <p>{researcher_id}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <p class="bold">whale_ids</p>
+                    </div>
+                    <div class="col-sm">
+                        <p>{whale_ids}</p>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-danger">Delete record</button>

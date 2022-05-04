@@ -27,6 +27,15 @@ export default class Sightings extends React.Component {
       <div class="container">
         <h1 class="text-center">Sightings</h1>
         <SightingsButtonGroup />
+        <div class="select">
+          <select class="form-control" id="whale_id">
+            <option selected>Filter on whale_id</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
+        </div>
         <table class="table">
           <thead>
             <tr>
@@ -35,6 +44,7 @@ export default class Sightings extends React.Component {
               <th scope="col">latitude</th>
               <th scope="col">longitude</th>
               <th scope="col">researcher_id</th>
+              <th scope="col">whale_ids</th>
             </tr>
           </thead>
           <tbody>
@@ -46,15 +56,16 @@ export default class Sightings extends React.Component {
                   <td>{row.latitude}</td>
                   <td>{row.longitude}</td>
                   <td>{row.researcher_id}</td>
+                  <td>{row.whale_ids}</td>
                   <td>
                     <a 
-                      href={"/sightings/update/" + row.sighting_id + "/" + row.datetime + "/" + row.latitude + "/" + row.longitude + "/" + row.researcher_id} 
+                      href={"/sightings/update/" + row.sighting_id + "/" + row.datetime + "/" + row.latitude + "/" + row.longitude + "/" + row.researcher_id + "/" + row.whale_ids} 
                       class="btn btn-light btn-md"
                     >Modify</a>
                   </td>
                   <td>
                     <a 
-                      href={"/sightings/delete/" +  row.sighting_id + "/" + row.datetime + "/" + row.latitude + "/" + row.longitude + "/" + row.researcher_id}
+                      href={"/sightings/delete/" +  row.sighting_id + "/" + row.datetime + "/" + row.latitude + "/" + row.longitude + "/" + row.researcher_id+ "/" + row.whale_ids}
                       class="btn btn-danger btn-md">Delete</a></td>
                 </tr>
               )

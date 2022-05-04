@@ -8,13 +8,15 @@ import SightingsButtonsGroup from '../button_groups/sightings_buttons';
 const SightingsUpdateForm = () => {
 
     // Get id from url
-    const { id, datetime, latitude, longitude, researcher_id} = useParams();
+    const { id, datetime, latitude, longitude, researcher_id, whale_ids} = useParams();
 
     // Initialize state
     const [newDatetime, setDatetime] = useState(datetime);
     const [newLatitude, setLatitude] = useState(latitude)
     const [newLongitude, setLongitude] = useState(longitude)
     const [newResearcher, setResearcher] = useState(researcher_id)
+    const [newWhales, setWhales] = useState(whale_ids)
+
 
     return (
         <div>
@@ -56,6 +58,14 @@ const SightingsUpdateForm = () => {
                         type="number" class="form-control" 
                         id="researcher_id" value={newResearcher} 
                         onChange={e => setResearcher(e.target.value)}
+                    />
+                </div>
+                <div class="mb-3">
+                    <label for="whale_ids" class="form-label">Whale IDs</label>
+                    <input 
+                        type="text" class="form-control" 
+                        id="whale_ids" value={newWhales} 
+                        onChange={e => setWhales(e.target.value)}
                     />
                 </div>
                 <button type="submit" class="btn btn-warning">Modify record</button>

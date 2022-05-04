@@ -28,9 +28,6 @@ export default class AppNavbar extends React.Component {
                         <li class="nav-item">
                             <a class="nav-link" href="/sightings">Sightings</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/sightings_whales">Sightings_Whales</a>
-                        </li>
                     </ul>
                 </div>
             </div>
