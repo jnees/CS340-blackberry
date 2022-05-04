@@ -63,7 +63,8 @@ CREATE TABLE Sightings_Whales (
     FOREIGN KEY (sighting_id) REFERENCES Sightings(sighting_id)
     ON DELETE CASCADE,
     FOREIGN KEY (whale_id) REFERENCES Whales(whale_id)
-    ON DELETE CASCADE
+    ON DELETE CASCADE,
+    CONSTRAINT combo_id UNIQUE (sighting_id, whale_id)
 );
 
 INSERT INTO Species (name, description)
