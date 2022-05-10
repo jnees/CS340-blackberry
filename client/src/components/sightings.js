@@ -10,6 +10,7 @@ export default class Sightings extends React.Component {
 
     this.state = {
       data: [],
+      whales: []
     };
   }
 
@@ -19,7 +20,8 @@ export default class Sightings extends React.Component {
 
   async updateData() {
     const res = await axios.get('/api/sightings');
-    this.setState({data: res.data})
+    const whale_res = await axios.get('/api/whales');
+    this.setState({data: res.data, whales: whale_res.data})
   };
     
   render() {
@@ -29,11 +31,11 @@ export default class Sightings extends React.Component {
         <SightingsButtonGroup />
         <div class="select">
           <select class="form-control" id="whale_id">
-            <option selected>Filter on whale_id</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
+            <option selected>Filter on whale</option>
+            {this.state.whales.map(row => 
+              <option>{row.whale_id + " - " + row.name}</option>
+            )}
+            
           </select>
         </div>
         <table class="table">
