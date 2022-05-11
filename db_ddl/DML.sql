@@ -10,7 +10,7 @@ SELECT * FROM Organizations;
 SELECT * FROM Whales;
 
 -- Query to retrieve all Researchers records (/researchers) 
-SELECT Researchers.*, Organizations.name AS organization_name FROM Researchers INNER JOIN Organizations ON Researchers.organization_id = Organizations.organization_id;
+SELECT Researchers.*, Organizations.name AS organization_name FROM Researchers LEFT JOIN Organizations ON Researchers.organization_id = Organizations.organization_id;
 
 -- Query to retrieve all Sighting records (/sightings) 
 SELECT Sightings.*, Whales.name AS whale_name FROM Sightings INNER JOIN Whales ON Sightings.whale_id = Whales.whale_id;
