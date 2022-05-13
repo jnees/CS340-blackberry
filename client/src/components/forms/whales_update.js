@@ -1,5 +1,7 @@
 import {React, useState} from 'react';
 import { useParams } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import WhalesButtonsGroup from '../button_groups/whales_buttons';
 const axios = require('axios').default;
 
@@ -9,6 +11,7 @@ const axios = require('axios').default;
 const WhalesUpdateForm = () => {
 
     const handleSubmit = async (event) => {
+        const msg = toast.loading("Updating record...");
         dataValidation();
         event.preventDefault();
         axios({
@@ -18,13 +21,13 @@ const WhalesUpdateForm = () => {
         })
             .then((res) => {
                 if (res.status !== 200){
-                    alert("Error updating db record.")
+                    toast.update(msg, { render: "Something went wrong!", type: "error", isLoading: false });
                 } else {
-                    alert("Record updated")
+                    toast.update(msg, { render: "Success!", type: "success", isLoading: false });
                 }
             })
             .catch((err) => {
-                alert("Error sending update")
+                toast.update(msg, { render: "Something went wrong!", type: "error", isLoading: false });
             })
     }
 
@@ -47,6 +50,7 @@ const WhalesUpdateForm = () => {
         <div>
         <h1 class="text-center">Update Whale</h1>
         <WhalesButtonsGroup />
+        <ToastContainer />
         <div class="container">
             <p>{"Update record for whale_id " + id + " :"}</p>
         </div>

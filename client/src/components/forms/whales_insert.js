@@ -1,6 +1,9 @@
 import { React, useState} from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import WhalesButtonsGroup from '../button_groups/whales_buttons';
 const axios = require('axios').default;
+
 
 
 // Form for inserting records into the species table.
@@ -19,6 +22,7 @@ const WhalesInsertForm = () => {
     }
     
     const handleSubmit = async (event) => {
+        const msg = toast.loading("Adding record...");
         dataValidation();
         event.preventDefault();
         axios({
@@ -27,7 +31,7 @@ const WhalesInsertForm = () => {
             data: {name, birthyear, is_female, is_transient, species_id}
         })
             .then((res) => {
-                alert("Record added");
+                toast.update(msg, { render: "Success!", type: "success", isLoading: false });
                 clearState();
             })
             .catch((err) => {
@@ -46,6 +50,7 @@ const WhalesInsertForm = () => {
         <div>
             <h1 class="text-center">Add New Whale</h1>
             <WhalesButtonsGroup />
+            <ToastContainer />
             <div class="container">
             <form>
                 <div class="mb-3">

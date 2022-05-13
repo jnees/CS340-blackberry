@@ -1,5 +1,7 @@
 import { React } from 'react';
 import { useParams } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import WhalesButtonsGroup from '../button_groups/whales_buttons';
 const axios = require('axios').default;
 
@@ -9,6 +11,7 @@ const axios = require('axios').default;
 const WhalesDeleteForm = () => {
 
     const handleSubmit = (event) => {
+        const msg = toast.loading("Deleting record...");
         event.preventDefault();
         axios({
             method: "delete",
@@ -16,10 +19,15 @@ const WhalesDeleteForm = () => {
             data: {id}
         })
             .then((res) => {
-                alert("Record deleted");
+                if(res.status !== 200){
+                    toast.update(msg, { render: "Something went wrong!", type: "error", isLoading: false });
+                } else {
+                    toast.update(msg, { render: "Success!", type: "success", isLoading: false });
+                }
+                
             })
             .catch((err) => {
-                alert("Error deleting record")
+                toast.update(msg, { render: "Something went wrong!", type: "error", isLoading: false });
             })
     }
 
@@ -30,6 +38,7 @@ const WhalesDeleteForm = () => {
         <div class="container">
             <h1 class="text-center">Delete Whale</h1>
             <WhalesButtonsGroup />
+            <ToastContainer />
             <div class="container text-left">
                 <div class="row">
                     <div class="col">
