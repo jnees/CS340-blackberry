@@ -27,6 +27,7 @@ const WhalesUpdateForm = () => {
         </div>
 
         <div class="container">
+            // Played around with different action and method combos with no success
             <form action="/whales" method="post">
                 <div class="mb-3">
                     <label for="name" class="form-label">Name</label>
