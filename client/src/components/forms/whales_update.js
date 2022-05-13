@@ -1,11 +1,36 @@
 import {React, useState} from 'react';
 import { useParams } from 'react-router-dom';
 import WhalesButtonsGroup from '../button_groups/whales_buttons';
+const axios = require('axios').default;
 
 // Form for modifying a record in the species table. Prepopulates the existing record.
 // Uses a function instead of class to make getting
 // the query parameters easier (useParams hook)
 const WhalesUpdateForm = () => {
+
+    const handleSubmit = async (event) => {
+        dataValidation();
+        event.preventDefault();
+        axios({
+            method: "put",
+            url: "/api/whales",
+            data: {id, newName, newBirthyear, newGender, newTransient, newSpecies}
+        })
+            .then((res) => {
+                if (res.status !== 200){
+                    alert("Error updating db record.")
+                } else {
+                    alert("Record updated")
+                }
+            })
+            .catch((err) => {
+                alert("Error sending update")
+            })
+    }
+
+    const dataValidation = () => {
+        // TODO: DATA VALIDATION
+    }
 
     // Get id from url
     const { id, name, birthyear, is_female, is_transient, species_id} = useParams();
@@ -27,7 +52,6 @@ const WhalesUpdateForm = () => {
         </div>
 
         <div class="container">
-            [// Played around with different action and method combos with no success]
             <form action="/whales" method="post">
                 <div class="mb-3">
                     <label for="name" class="form-label">Name</label>
@@ -69,7 +93,7 @@ const WhalesUpdateForm = () => {
                         onChange={e => setSpecies(e.target.value)}
                     />
                 </div>
-                <button type="submit" class="btn btn-warning">Modify record</button>
+                <button onClick={(e) => {handleSubmit(e)}} type="submit" class="btn btn-warning">Modify record</button>
             </form>
             </div>
     </div>

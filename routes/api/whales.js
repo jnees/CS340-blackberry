@@ -23,7 +23,7 @@ router.get("/", (req, res) => {
 // @route POST api/whales
 // @desc Insert records into whales
 router.post("/", (req, res) => {
-    console.log(req.body);
+    console.log("Insert whale request: " + req.body);
 
     let SQL = `INSERT INTO Whales ("name", "birthyear", "is_female", "is_transient", "species_id")  \ 
     VALUES ('${req.body.name}', '${req.body.birthyear}', '${req.body.is_female}', \
@@ -43,23 +43,25 @@ router.post("/", (req, res) => {
 // @route PUT api/whales
 // @desc Update records in whales
 router.put("/", (req, res) => {
-    console.log("req.body = ", req.body);
-    let values = [
-        req.body.name,
-        req.body.birthyear,
-        req.body.is_female,
-        req.body.is_transient,
-        req.body.species,
-        req.body.id
-    ]
-    let SQL = "UPDATE Whales SET name = $1, birthyear = $2, is_female = $3, is_transient = $4, species_id = $5 WHERE whale_id = $6"
+    console.log("Update whale request: ", req.body);
     
-    return client.query(SQL).then((result) => {
-        res.redirect("/whales")
-    })
-    .catch((err) => {
-        console.error(err);
-    })
+    let SQL = `UPDATE WHALES SET \
+               "name" = '${req.body.newName}', \
+               "birthyear" = '${req.body.newBirthyear}', \
+               "is_female" = '${req.body.newGender}', \
+               "is_transient" = '${req.body.newTransient}', \
+               "species_id" = '${req.body.newSpecies}' \
+               WHERE whale_id = '${req.body.id}'`
+    
+    return pool.query(SQL)
+        .then((db_res) => {
+            console.log(db_res);
+            res.send("success");
+        })
+        .catch((err) =>{
+            console.log(err)
+            res.send("error")
+        });
  });
 
 
@@ -77,7 +79,7 @@ router.delete("/", (req, res) => {
         })
         .catch((err) =>{
             console.log(err)
-            res.send("error")
+            res.status(500).send('Error Updating Record')
         });
  });
 
