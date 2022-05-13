@@ -17,6 +17,7 @@ const WhalesUpdateForm = () => {
     const [newTransient, setTransient] = useState(is_transient)
     const [newSpecies, setSpecies] = useState(species_id)
 
+
     return (
         <div>
         <h1 class="text-center">Update Whale</h1>
@@ -26,7 +27,7 @@ const WhalesUpdateForm = () => {
         </div>
 
         <div class="container">
-            <form>
+            <form action="/whales" method="post">
                 <div class="mb-3">
                     <label for="name" class="form-label">Name</label>
                     <input 

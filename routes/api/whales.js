@@ -4,10 +4,16 @@ const { response } = require("express");
 const express = require("express");
 const res = require("express/lib/response");
 const router = express.Router();
-const pg = require("pg");
 
-pg.sslmode = "require";
-const client = new pg.Client(process.env.DATABASE_URL);
+// Connect to db
+const { Client } = require('pg');
+const client = new Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl:
+    {
+        rejectUnauthorized: false
+    }
+});
 client.connect().catch((e) => console.error("connection error", e.stack));
 client.on("error", (err) => console.log(err));
 
@@ -51,18 +57,15 @@ router.get("/", (req, res) => {
     // ]
 
     // res.json(dummy_data);
-    SQL = "SELECT * FROM Whales;"
+    
+    let SQL = "SELECT * FROM Whales;"
     return client.query(SQL).then((result) => {
-        console.log(process.env.DATABASE_URL)
-        res.json(result.rows)
+        res.json(result.rows);
     })
     .catch((err) => {
         console.error(err);
     })
 });
-
-
-
 
 // @route POST api/whales
 // @desc Insert records into whales
@@ -73,7 +76,23 @@ router.post("/", (req, res) => {
 // @route PUT api/whales
 // @desc Update records in whales
 router.put("/", (req, res) => {
-    res.send("This route should handle updating data in the whales table.")
+    console.log("req.body = ", req.body);
+    let values = [
+        req.body.name,
+        req.body.birthyear,
+        req.body.is_female,
+        req.body.is_transient,
+        req.body.species,
+        req.body.id
+    ]
+    let SQL = "UPDATE Whales SET name = $1, birthyear = $2, is_female = $3, is_transient = $4, species_id = $5 WHERE whale_id = $6"
+    
+    return client.query(SQL).then((result) => {
+        res.redirect("/whales")
+    })
+    .catch((err) => {
+        console.error(err);
+    })
  });
 
 
@@ -82,5 +101,6 @@ router.put("/", (req, res) => {
 router.delete("/", (req, res) => {
     res.send("This route should handle updating data in the species table.")
  });
+
 
  module.exports = router;
