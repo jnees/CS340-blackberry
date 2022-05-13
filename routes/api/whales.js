@@ -8,7 +8,7 @@ const pool = require("../../db_pool.js")
 // @desc Get all records from the whales table
 router.get("/", (req, res) => {
     
-    let SQL = "SELECT * FROM Whales;"
+    const SQL = "SELECT * FROM Whales;"
     
     return pool.query(SQL)
         .then((result) => {
@@ -23,8 +23,21 @@ router.get("/", (req, res) => {
 // @route POST api/whales
 // @desc Insert records into whales
 router.post("/", (req, res) => {
-   res.send("This route should handle adding data into the whales table.")
+    console.log(req.body);
 
+    let SQL = `INSERT INTO Whales ("name", "birthyear", "is_female", "is_transient", "species_id")  \ 
+    VALUES ('${req.body.name}', '${req.body.birthyear}', '${req.body.is_female}', \
+    '${req.body.is_transient}', '${req.body.species_id}');`
+    
+    return pool.query(SQL)
+        .then((db_res) => {
+            console.log(db_res);
+            res.send("success");
+        })
+        .catch((err) =>{
+            console.log(err)
+            res.send("error")
+        })
 });
 
 // @route PUT api/whales
