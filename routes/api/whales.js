@@ -37,7 +37,7 @@ router.post("/", (req, res) => {
         .catch((err) =>{
             console.log(err)
             res.send("error")
-        })
+        });
 });
 
 // @route PUT api/whales
@@ -66,7 +66,19 @@ router.put("/", (req, res) => {
 // @route DELETE api/whales
 // @desc Delete records from whales
 router.delete("/", (req, res) => {
-    res.send("This route should handle updating data in the species table.")
+    console.log("Delete whale id: ", req.body.id);
+    
+    let SQL = `DELETE FROM Whales WHERE whale_id = ${req.body.id}`
+
+    return pool.query(SQL)
+        .then((db_res) => {
+            console.log(db_res);
+            res.send("success");
+        })
+        .catch((err) =>{
+            console.log(err)
+            res.send("error")
+        });
  });
 
 

@@ -1,11 +1,27 @@
 import { React } from 'react';
 import { useParams } from 'react-router-dom';
 import WhalesButtonsGroup from '../button_groups/whales_buttons';
+const axios = require('axios').default;
 
 // Delete confirmation page for species
 // Uses a function instead of class to make getting
 // the query parameters easier (useParams hook)
 const WhalesDeleteForm = () => {
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        axios({
+            method: "delete",
+            url: "/api/whales",
+            data: {id}
+        })
+            .then((res) => {
+                alert("Record deleted");
+            })
+            .catch((err) => {
+                alert("Error deleting record")
+            })
+    }
 
     // Get id from url
     const { id, name, birthyear, is_female, is_transient, species_id } = useParams();
@@ -68,7 +84,7 @@ const WhalesDeleteForm = () => {
                         <p>{species_id}</p>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-danger">Delete record</button>
+                <button onClick={(e) => {handleSubmit(e)}} type="submit" class="btn btn-danger">Delete record</button>
             </div>
 
         </div>    
