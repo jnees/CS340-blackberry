@@ -20,14 +20,14 @@ const WhalesDeleteForm = () => {
         })
             .then((res) => {
                 if(res.status !== 200){
-                    toast.update(msg, { render: "Something went wrong!", type: "error", isLoading: false });
+                    toast.update(msg, { render: "Something went wrong!", type: "error", isLoading: false, autoClose: 3000 });
                 } else {
-                    toast.update(msg, { render: "Success!", type: "success", isLoading: false });
+                    toast.update(msg, { render: "Success!", type: "success", isLoading: false, autoClose: 3000 });
                 }
                 
             })
             .catch((err) => {
-                toast.update(msg, { render: "Something went wrong!", type: "error", isLoading: false });
+                toast.update(msg, { render: "Something went wrong!", type: "error", isLoading: false, autoClose: 3000 });
             })
     }
 
