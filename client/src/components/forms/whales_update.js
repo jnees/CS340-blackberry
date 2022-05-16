@@ -1,5 +1,5 @@
 import {React, useState} from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate, Navigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import WhalesButtonsGroup from '../button_groups/whales_buttons';
@@ -10,8 +10,11 @@ const axios = require('axios').default;
 // the query parameters easier (useParams hook)
 const WhalesUpdateForm = () => {
 
+    let navigate = useNavigate();
+
     const handleSubmit = async (event) => {
         const msg = toast.loading("Updating record...");
+        
         dataValidation();
         event.preventDefault();
         axios({
@@ -23,12 +26,12 @@ const WhalesUpdateForm = () => {
                 if (res.status !== 200){
                     toast.update(msg, { render: "Something went wrong!", type: "error", isLoading: false, autoClose: 3000 });
                 } else {
-                    toast.update(msg, { render: "Success!", type: "success", isLoading: false, autoClose: 3000});
+                    navigate("/whales/success");
                 }
             })
             .catch((err) => {
                 toast.update(msg, { render: "Something went wrong!", type: "error", isLoading: false, autoClose: 3000 });
-            })
+            });
     }
 
     const dataValidation = () => {
