@@ -1,5 +1,5 @@
 import {React, useState} from 'react';
-import { useParams, useNavigate, Navigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import WhalesButtonsGroup from '../button_groups/whales_buttons';

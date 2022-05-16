@@ -1,4 +1,5 @@
 import { React, useState} from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import WhalesButtonsGroup from '../button_groups/whales_buttons';
@@ -8,6 +9,8 @@ const axios = require('axios').default;
 
 // Form for inserting records into the species table.
 const WhalesInsertForm = () => {
+
+    let navigate = useNavigate();
 
     const clearState = () => {
         setName("");
@@ -31,8 +34,9 @@ const WhalesInsertForm = () => {
             data: {name, birthyear, is_female, is_transient, species_id}
         })
             .then((res) => {
-                toast.update(msg, { render: "Success!", type: "success", isLoading: false , autoClose: 3000});
-                clearState();
+                navigate("/whales/success");
+                // toast.update(msg, { render: "Success!", type: "success", isLoading: false , autoClose: 3000});
+                // clearState();
             })
             .catch((err) => {
                 toast.update(msg, { render: "Something went wrong!", type: "error", isLoading: false, autoClose: 3000})

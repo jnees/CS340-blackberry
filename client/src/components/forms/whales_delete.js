@@ -1,5 +1,5 @@
 import { React } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import WhalesButtonsGroup from '../button_groups/whales_buttons';
@@ -9,6 +9,8 @@ const axios = require('axios').default;
 // Uses a function instead of class to make getting
 // the query parameters easier (useParams hook)
 const WhalesDeleteForm = () => {
+
+    let navigate = useNavigate();
 
     const handleSubmit = (event) => {
         const msg = toast.loading("Deleting record...");
@@ -22,7 +24,7 @@ const WhalesDeleteForm = () => {
                 if(res.status !== 200){
                     toast.update(msg, { render: "Something went wrong!", type: "error", isLoading: false, autoClose: 3000 });
                 } else {
-                    toast.update(msg, { render: "Success!", type: "success", isLoading: false, autoClose: 3000 });
+                    navigate("/whales/success");
                 }
                 
             })
