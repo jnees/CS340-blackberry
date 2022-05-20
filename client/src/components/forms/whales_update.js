@@ -78,19 +78,19 @@ const WhalesUpdateForm = () => {
                 </div>
                 <div class="mb-3">
                     <label for="is_female" class="form-label">Is Female</label>
-                    <input 
-                        type="number" class="form-control" 
-                        id="is_female" value={newGender} 
-                        onChange={e => setGender(e.target.value)}
-                    />
+                    <select class="form-control" id="is_female" value={newGender}
+                        onChange={e => setGender(e.target.value)}>
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
                 </div>
                 <div class="mb-3">
                     <label for="is_transient" class="form-label">Is Transient</label>
-                    <input 
-                        type="number" class="form-control" 
-                        id="is_transient" value={newTransient} 
-                        onChange={e => setTransient(e.target.value)}
-                    />
+                    <select class="form-control" id="is_transient" value={newTransient}
+                        onChange={e => setTransient(e.target.value)}>
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
                 </div>
                 <div class="mb-3">
                     <label for="species" class="form-label">Species ID</label>
