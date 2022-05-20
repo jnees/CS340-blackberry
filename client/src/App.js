@@ -45,6 +45,7 @@ function App() {
           <Route path="/researchers" element={<Researchers />} />
           <Route path="/researchers/success" element={<Researchers toast="Success" />} />
           <Route path="/organizations" element={<Organizations />} />
+          <Route path="/organizations/success" element={<Organizations />} />
           <Route path="/sightings" element={<Sightings />} />
           <Route path='/sightings_whales' element={<SightingsWhales />} />
           
