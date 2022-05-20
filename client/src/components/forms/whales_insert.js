@@ -34,9 +34,8 @@ const WhalesInsertForm = () => {
             data: {name, birthyear, is_female, is_transient, species_id}
         })
             .then((res) => {
+                clearState();
                 navigate("/whales/success");
-                // toast.update(msg, { render: "Success!", type: "success", isLoading: false , autoClose: 3000});
-                // clearState();
             })
             .catch((err) => {
                 toast.update(msg, { render: "Something went wrong!", type: "error", isLoading: false, autoClose: 3000})
