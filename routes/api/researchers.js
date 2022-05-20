@@ -53,8 +53,8 @@ router.put("/", (req, res) => {
                "first_name" = '${req.body.newFirstName}', \
                "last_name" = '${req.body.newLastName}', \
                "email" = '${req.body.newEmail}', \
-               "organization_id" = '${req.body.newOrganizationID}', \
-               WHERE researcher_id = '${req.body.id}'`
+               "organization_id" = '${req.body.newOrganization}' \
+               WHERE "researcher_id" = '${req.body.id}'`
     
     return pool.query(SQL)
         .then((db_res) => {
@@ -63,7 +63,7 @@ router.put("/", (req, res) => {
         })
         .catch((err) =>{
             console.log(err)
-            res.send("error")
+            res.status(500).send("An error occured updating the record.")
         });
  });
 

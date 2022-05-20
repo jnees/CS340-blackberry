@@ -1,11 +1,42 @@
 import {React, useState} from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import ResearchersButtonsGroup from '../button_groups/researchers_buttons';
+const axios = require('axios').default;
 
 // Form for modifying a record in the species table. Prepopulates the existing record.
 // Uses a function instead of class to make getting
 // the query parameters easier (useParams hook)
 const ResearchersUpdateForm = () => {
+
+    let navigate = useNavigate();
+
+    const handleSubmit = async (event) => {
+        const msg = toast.loading("Updating record...");
+        
+        dataValidation();
+        event.preventDefault();
+        axios({
+            method: "put",
+            url: "/api/researchers",
+            data: {id, newFirstName, newLastName, newEmail, newOrganization}
+        })
+            .then((res) => {
+                if (res.status !== 200){
+                    toast.update(msg, { render: "Something went wrong!", type: "error", isLoading: false, autoClose: 3000 });
+                } else {
+                    navigate("/researchers/success");
+                }
+            })
+            .catch((err) => {
+                toast.update(msg, { render: "Something went wrong!", type: "error", isLoading: false, autoClose: 3000 });
+            });
+    }
+
+    const dataValidation = () => {
+        // TODO: DATA VALIDATION
+    }
 
     // Get id from url
     const { id, first_name, last_name, email, organization_id} = useParams();
@@ -20,6 +51,7 @@ const ResearchersUpdateForm = () => {
         <div>
         <h1 class="text-center">Update Researcher</h1>
         <ResearchersButtonsGroup />
+        <ToastContainer />
         <div class="container">
             <p>{"Update record for researcher_id " + id + " :"}</p>
         </div>
@@ -58,7 +90,8 @@ const ResearchersUpdateForm = () => {
                         onChange={e => setOrganization(e.target.value)}
                     />
                 </div>
-                <button type="submit" class="btn btn-warning">Modify record</button>
+                <button onClick={(e) => {handleSubmit(e)}} type="submit" 
+                    class="btn btn-warning">Modify record</button>
             </form>
             </div>
     </div>

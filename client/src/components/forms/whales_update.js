@@ -100,7 +100,8 @@ const WhalesUpdateForm = () => {
                         onChange={e => setSpecies(e.target.value)}
                     />
                 </div>
-                <button onClick={(e) => {handleSubmit(e)}} type="submit" class="btn btn-warning">Modify record</button>
+                <button onClick={(e) => {handleSubmit(e)}} type="submit" 
+                    class="btn btn-warning">Modify record</button>
             </form>
             </div>
     </div>
