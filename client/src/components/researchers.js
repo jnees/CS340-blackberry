@@ -1,4 +1,6 @@
 import React from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import ResearchersButtonsGroup from './button_groups/researchers_buttons';
 const axios = require('axios').default;
 
@@ -10,6 +12,7 @@ export default class Reserachers extends React.Component {
 
     this.state = {
       data: [],
+      toasted: false
     };
   }
 
@@ -20,13 +23,23 @@ export default class Reserachers extends React.Component {
   async updateData() {
     const res = await axios.get('/api/researchers');
     this.setState({data: res.data})
+    this.showToast()
   };
+
+  showToast(){
+    if (this.props.toast === "Success" && !this.state.toasted){
+      this.setState({toasted: true})
+      const msg = toast.loading("Updating record...");
+      toast.update(msg, { render: "Success!", type: "success", isLoading: false, autoClose: 2000, closeOnClick: true, delay: 500})
+    }
+  }
     
   render() {
     return (
       <div class="container">
         <h1 class="text-center">Researchers</h1>
         <ResearchersButtonsGroup />
+        <ToastContainer />
         <table class="table">
           <thead>
             <tr>
