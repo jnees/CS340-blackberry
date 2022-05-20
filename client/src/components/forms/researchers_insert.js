@@ -1,14 +1,18 @@
-import React from 'react';
+import { React, useState} from 'react';
+import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import ResearchersButtonsGroup from '../button_groups/researchers_buttons';
 
 // Form for inserting records into the species table.
-export default class ResearchersInsertForm extends React.Component {
+const ResearchersInsertForm = () => {
     
-    render() {
-      return (
+
+    return (
         <div>
             <h1 class="text-center">Add New Researcher</h1>
             <ResearchersButtonsGroup />
+            <ToastContainer />
             <div class="container">
             <form>
                 <div class="mb-3">
@@ -31,6 +35,8 @@ export default class ResearchersInsertForm extends React.Component {
             </form>
             </div>
         </div>
-      ) 
-    }
+    ) 
   }
+
+
+export default ResearchersInsertForm

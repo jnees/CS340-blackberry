@@ -6,7 +6,6 @@ import WhalesButtonsGroup from '../button_groups/whales_buttons';
 const axios = require('axios').default;
 
 
-
 // Form for inserting records into the species table.
 const WhalesInsertForm = () => {
 
