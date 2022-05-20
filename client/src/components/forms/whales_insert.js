@@ -44,8 +44,8 @@ const WhalesInsertForm = () => {
     // Initialize state
     const [name, setName] = useState("");
     const [birthyear, setBirthyear] = useState("");
-    const [is_female, setGender] = useState("");
-    const [is_transient, setTransient] = useState("");
+    const [is_female, setGender] = useState("0");
+    const [is_transient, setTransient] = useState("0");
     const [species_id, setSpecies] = useState("");
     
       return (
@@ -67,13 +67,19 @@ const WhalesInsertForm = () => {
                 </div>
                 <div class="mb-3">
                     <label for="is_female" class="form-label">Is Female</label>
-                    <input type="number" class="form-control" id="is_female" 
-                        value={is_female} onChange={e => setGender(e.target.value)}/>
+                    <select class="form-control" id="is_female" value={is_female}
+                        onChange={e => setGender(e.target.value)}>
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
                 </div>
                 <div class="mb-3">
                     <label for="is_transient" class="form-label">Is Transient</label>
-                    <input type="number" class="form-control" id="is_transient" 
-                        value={is_transient} onChange={e => setTransient(e.target.value)}/>
+                    <select class="form-control" id="is_transient" value={is_transient}
+                        onChange={e => setTransient(e.target.value)}>
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
                 </div>
                 <div class="mb-3">
                     <label for="species_id" class="form-label">Species ID</label>
