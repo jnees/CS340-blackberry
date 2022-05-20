@@ -26,7 +26,21 @@ router.get("/", (req, res) => {
 // @route POST api/researchers
 // @desc Insert records into researchers
 router.post("/", (req, res) => {
-   res.send("This route should handle adding data into the researchers table.")
+    console.log("Insert researchers request: " + req.body);
+
+    let SQL = `INSERT INTO Researchers ("first_name", "last_name", "email", "organization_id")
+    VALUES ('${req.body.first_name}', '${req.body.last_name}', \
+    '${req.body.email}', '${req.organization_id}';`
+    
+    return pool.query(SQL)
+        .then((db_res) => {
+            console.log(db_res);
+            res.send("success");
+        })
+        .catch((err) =>{
+            console.log(err)
+            res.send("error")
+        });
 });
 
 
