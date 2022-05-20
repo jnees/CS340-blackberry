@@ -47,7 +47,24 @@ router.post("/", (req, res) => {
 // @route PUT api/researchers
 // @desc Update records in researchers
 router.put("/", (req, res) => {
-    res.send("This route should handle updating data in the researchers table.")
+    console.log("Update researcher request: ", req.body);
+    
+    let SQL = `UPDATE Researchers SET \
+               "first_name" = '${req.body.newFirstName}', \
+               "last_name" = '${req.body.newLastName}', \
+               "email" = '${req.body.newEmail}', \
+               "organization_id" = '${req.body.newOrganizationID}', \
+               WHERE researcher_id = '${req.body.id}'`
+    
+    return pool.query(SQL)
+        .then((db_res) => {
+            console.log(db_res);
+            res.send("success");
+        })
+        .catch((err) =>{
+            console.log(err)
+            res.send("error")
+        });
  });
 
 
