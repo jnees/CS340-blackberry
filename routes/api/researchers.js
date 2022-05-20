@@ -35,12 +35,11 @@ router.post("/", (req, res) => {
     
     return pool.query(SQL)
         .then((db_res) => {
-            console.log(db_res);
             res.send("success");
         })
         .catch((err) =>{
             console.log(err)
-            res.send("error")
+            res.status(500).send("Error inserting record.")
         });
 });
 
@@ -55,7 +54,19 @@ router.put("/", (req, res) => {
 // @route DELETE api/researchers
 // @desc Delete records from researchers
 router.delete("/", (req, res) => {
-    res.send("This route should handle updating data in the researchers table.")
+    console.log("Delete researcher id: ", req.body.id);
+    
+    let SQL = `DELETE FROM Researchers WHERE researcher_id = ${req.body.id}`
+
+    return pool.query(SQL)
+        .then((db_res) => {
+            console.log(db_res);
+            res.send("success");
+        })
+        .catch((err) =>{
+            console.log(err)
+            res.status(500).send('Error Updating Record')
+        });
  });
 
  module.exports = router;
