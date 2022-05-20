@@ -23,20 +23,60 @@ router.get("/", (req, res) => {
 // @route POST api/organizations
 // @desc Insert records into organizations
 router.post("/", (req, res) => {
-   res.send("This route should handle adding data into the organizations table.")
+    console.log("Insert organizations request: ", req.body.name, req.body.type);
+
+    let SQL = `INSERT INTO Organizations ("name", "type") \
+    VALUES ('${req.body.name}', '${req.body.type}');`
+    
+    return pool.query(SQL)
+        .then((db_res) => {
+            res.send("success");
+        })
+        .catch((err) =>{
+            console.log(err)
+            res.status(500).send("Error inserting record.")
+        });
 });
+
 
 // @route PUT api/organizations
 // @desc Update records in organizations
 router.put("/", (req, res) => {
-    res.send("This route should handle updating data in the organizations table.")
+    console.log("Update organization request: ", req.body);
+    
+    let SQL = `UPDATE Organizations SET \
+               "name" = '${req.body.newName}', \
+               "type" = '${req.body.newType}' \
+               WHERE "organization_id" = '${req.body.id}'`
+    
+    return pool.query(SQL)
+        .then((db_res) => {
+            console.log(db_res);
+            res.send("success");
+        })
+        .catch((err) =>{
+            console.log(err)
+            res.status(500).send("An error occured updating the record.")
+        });
  });
 
 
 // @route DELETE api/organizations
 // @desc Delete records from organizations
 router.delete("/", (req, res) => {
-    res.send("This route should handle updating data in the organizations table.")
+    console.log("Delete organization id: ", req.body.id);
+    
+    let SQL = `DELETE FROM Organizations WHERE organization_id = ${req.body.id}`
+
+    return pool.query(SQL)
+        .then((db_res) => {
+            console.log(db_res);
+            res.send("success");
+        })
+        .catch((err) =>{
+            console.log(err)
+            res.status(500).send('Error Updating Record')
+        });
  });
 
  module.exports = router;
