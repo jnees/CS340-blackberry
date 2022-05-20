@@ -87,7 +87,8 @@ const ResearchersDeleteForm = () => {
                         <p>{organization_id}</p>
                     </div>
                 </div>
-                <button onClick={(e) => {handleSubmit(e)}} type="submit" class="btn btn-danger">Delete record</button>
+                <button onClick={(e) => {handleSubmit(e)}} 
+                    type="submit" class="btn btn-danger">Delete record</button>
             </div>
 
         </div>    
