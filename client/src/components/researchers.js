@@ -22,13 +22,13 @@ export default class Reserachers extends React.Component {
 
   async updateData() {
     const res = await axios.get('/api/researchers');
-    this.setState({data: res.data})
-    this.showToast()
+    this.setState({data: res.data});
+    this.showToast();
   };
 
   showToast(){
     if (this.props.toast === "Success" && !this.state.toasted){
-      this.setState({toasted: true})
+      this.setState({toasted: true});
       const msg = toast.loading("Updating record...");
       toast.update(msg, { render: "Success!", type: "success", isLoading: false, autoClose: 2000, closeOnClick: true, delay: 500})
     }

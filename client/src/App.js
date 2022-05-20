@@ -45,7 +45,7 @@ function App() {
           <Route path="/researchers" element={<Researchers />} />
           <Route path="/researchers/success" element={<Researchers toast="Success" />} />
           <Route path="/organizations" element={<Organizations />} />
-          <Route path="/organizations/success" element={<Organizations />} />
+          <Route path="/organizations/success" element={<Organizations toast="Success"/>} />
           <Route path="/sightings" element={<Sightings />} />
           <Route path='/sightings_whales' element={<SightingsWhales />} />
           
@@ -69,8 +69,6 @@ function App() {
           <Route path="/organizations/delete/:id/:name/:type" element={<OrganizationsDeleteForm />} />
           <Route path="/sightings/delete/:id/:datetime/:latitude/:longitude/:researcher_id/:whale_ids" element={<SightingsDeleteForm />} />
           <Route path="/sightings_whales/delete/:id/:sighting_id/:whale_id" element={<SightingsWhalesDeleteForm />} />
-
-
 
         </Routes>
     </div>
