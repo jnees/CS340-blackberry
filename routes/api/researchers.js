@@ -19,6 +19,7 @@ router.get("/", (req, res) => {
         })
         .catch((err) => {
             console.log(err)
+            res.status(500).send("An error occured while getting Researcher records.")
         })
 });
 
@@ -39,7 +40,7 @@ router.post("/", (req, res) => {
         })
         .catch((err) =>{
             console.log(err)
-            res.status(500).send("Error inserting record.")
+            res.status(500).send("An error occurred while inserting Researcher record.")
         });
 });
 
@@ -82,7 +83,7 @@ router.delete("/", (req, res) => {
         })
         .catch((err) =>{
             console.log(err)
-            res.status(500).send('Error Updating Record')
+            res.status(500).send('Error Deleting Record')
         });
  });
 
