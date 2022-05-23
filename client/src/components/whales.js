@@ -50,6 +50,7 @@ export default class Whales extends React.Component {
               <th scope="col">is_female</th>
               <th scope="col">is_transient</th>
               <th scope="col">species_id</th>
+              <th scope="col">species</th>
             </tr>
           </thead>
           <tbody>
@@ -59,9 +60,10 @@ export default class Whales extends React.Component {
                   <th scope="row">{row.whale_id}</th>
                   <td>{row.name}</td>
                   <td>{row.birthyear}</td>
-                  <td>{row.is_female}</td>
-                  <td>{row.is_transient}</td>
+                  <td>{row.is_female === 1 ? "Yes": "No"}</td>
+                  <td>{row.is_transient === 1 ? "Yes": "No"}</td>
                   <td>{row.species_id}</td>
+                  <td>{row.species_name}</td>
                   <td>
                     <a 
                       href={"/whales/update/" + row.whale_id + "/" + row.name + "/" + row.birthyear + "/" + row.is_female + "/" + row.is_transient + "/" + row.species_id} 
