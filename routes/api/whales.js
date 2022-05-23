@@ -8,7 +8,7 @@ const pool = require("../../db_pool.js")
 // @desc Get all records from the whales table
 router.get("/", (req, res) => {
     
-    const SQL = "SELECT * FROM Whales;"
+    const SQL = "SELECT Whales.*, Species.name AS species_name FROM Whales Left Join Species on Species.species_id = Whales.species_id;"
     
     return pool.query(SQL)
         .then((result) => {
