@@ -60,10 +60,6 @@ router.put("/", (req, res) => {
                "type" = '${req.body.newType}' \
                WHERE "organization_id" = '${req.body.id}'`
 
-    // let SQL = `UPDATE Organizations SET \
-    //            "name" = 'oops', \
-    //            "type" = 'educational' \
-    //            WHERE "organization_id" = '9'`
     
     return pool.query(SQL)
         .then((db_res) => {
