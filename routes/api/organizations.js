@@ -26,6 +26,11 @@ router.get("/", (req, res) => {
 router.post("/", (req, res) => {
     console.log("Insert organizations request: ", req.body.name, req.body.type);
 
+    // Name required.
+    if (req.body.name === ""){
+        res.status(500).send("Error inserting record.")
+    }
+
     let SQL = `INSERT INTO Organizations ("name", "type") \
     VALUES ('${req.body.name}', '${req.body.type}');`
     
@@ -44,7 +49,7 @@ router.post("/", (req, res) => {
 // @desc Update records in organizations
 router.put("/", (req, res) => {
     console.log("Update organization request: ", req.body);
-    
+
     let SQL = `UPDATE Organizations SET \
                "name" = '${req.body.newName}', \
                "type" = '${req.body.newType}' \
