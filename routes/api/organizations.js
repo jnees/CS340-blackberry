@@ -28,7 +28,7 @@ router.post("/", (req, res) => {
 
     // Name required.
     if (req.body.name === ""){
-        res.status(500).send("Error inserting record.")
+        return res.status(500).send("Error inserting record.")
     }
 
     let SQL = `INSERT INTO Organizations ("name", "type") \
@@ -50,10 +50,20 @@ router.post("/", (req, res) => {
 router.put("/", (req, res) => {
     console.log("Update organization request: ", req.body);
 
+    // Name required.
+    if (req.body.newName === ""){
+        return res.status(500).send("Error inserting record.")
+    }
+
     let SQL = `UPDATE Organizations SET \
                "name" = '${req.body.newName}', \
                "type" = '${req.body.newType}' \
                WHERE "organization_id" = '${req.body.id}'`
+
+    // let SQL = `UPDATE Organizations SET \
+    //            "name" = 'oops', \
+    //            "type" = 'educational' \
+    //            WHERE "organization_id" = '9'`
     
     return pool.query(SQL)
         .then((db_res) => {
