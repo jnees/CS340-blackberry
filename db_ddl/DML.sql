@@ -7,7 +7,7 @@ SELECT * FROM Species;
 SELECT * FROM Organizations;
 
 -- Query to retrieve all Whale records (/whales) 
-SELECT * FROM Whales;
+SELECT Whales.*, Species.name as species_name from Whales LEFT JOIN Species on Whales.species_id = Species.species_id;
 
 -- Query to retrieve all Researchers records (/researchers) 
 SELECT Researchers.*, Organizations.name AS organization_name FROM Researchers LEFT JOIN Organizations ON Researchers.organization_id = Organizations.organization_id;

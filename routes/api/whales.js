@@ -8,7 +8,9 @@ const pool = require("../../db_pool.js")
 // @desc Get all records from the whales table
 router.get("/", (req, res) => {
     
-    const SQL = "SELECT * FROM Whales;"
+    const SQL = "SELECT Whales.*, Species.name AS species_name \
+                 FROM Whales \
+                    Left Join Species ON Species.species_id = Whales.species_id;"
     
     return pool.query(SQL)
         .then((result) => {
@@ -16,6 +18,7 @@ router.get("/", (req, res) => {
         })
         .catch((err) => {
             console.log(err)
+            res.status(500).send("An error occured getting whales data.")
         })
 });
 
@@ -36,7 +39,7 @@ router.post("/", (req, res) => {
         })
         .catch((err) =>{
             console.log(err)
-            res.send("error")
+            res.status(500).send("An error occured while inserting the record.")
         });
 });
 
@@ -60,7 +63,7 @@ router.put("/", (req, res) => {
         })
         .catch((err) =>{
             console.log(err)
-            res.send("error")
+            res.status(500).send("An error occured while modifying the record.")
         });
  });
 
@@ -79,7 +82,7 @@ router.delete("/", (req, res) => {
         })
         .catch((err) =>{
             console.log(err)
-            res.status(500).send('Error Updating Record')
+            res.status(500).send('An error occured while updating the Record')
         });
  });
 
