@@ -59,7 +59,7 @@ export default class Organizations extends React.Component {
                     <a 
                       href={"/organizations/update/" + row.organization_id + "/" + row.name + "/" + row.type} 
                       class="btn btn-light btn-md"
-                    >Modify</a>
+                    >Edit</a>
                   </td>
                   <td>
                     <a 

@@ -24,6 +24,9 @@ router.get("/", (req, res) => {
 // @route POST api/organizations
 // @desc Insert records into organizations
 router.post("/", (req, res) => {
+    
+    cleanedName = req.body.name.replace(/'/g, "''");
+
     console.log("Insert organizations request: ", req.body.name, req.body.type);
 
     // Name required.
@@ -32,7 +35,7 @@ router.post("/", (req, res) => {
     }
 
     let SQL = `INSERT INTO Organizations ("name", "type") \
-    VALUES ('${req.body.name}', '${req.body.type}');`
+    VALUES ('${cleanedName}', '${req.body.type}');`
     
     return pool.query(SQL)
         .then((db_res) => {
@@ -48,6 +51,9 @@ router.post("/", (req, res) => {
 // @route PUT api/organizations
 // @desc Update records in organizations
 router.put("/", (req, res) => {
+
+    cleanedName = req.body.newName.replace(/'/g, "''");
+
     console.log("Update organization request: ", req.body);
 
     // Name required.
@@ -56,7 +62,7 @@ router.put("/", (req, res) => {
     }
 
     let SQL = `UPDATE Organizations SET \
-               "name" = '${req.body.newName}', \
+               "name" = '${cleanedName}', \
                "type" = '${req.body.newType}' \
                WHERE "organization_id" = '${req.body.id}'`
 

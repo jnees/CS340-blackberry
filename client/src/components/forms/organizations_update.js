@@ -73,7 +73,7 @@ const OrganizationsUpdateForm = () => {
                     />
                 </div>
                 <button onClick={(e) => {handleSubmit(e)}} 
-                    type="submit" class="btn btn-warning">Modify record</button>
+                    type="submit" class="btn btn-warning">Edit record</button>
             </form>
             </div>
     </div>

@@ -1,11 +1,37 @@
 import { React } from 'react';
-import { useParams } from 'react-router-dom';
-import SpeciesButtonGroup from '../button_groups/species_buttons';
+import { useParams, useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import SpeciesButtonsGroup from '../button_groups/species_buttons';
+const axios = require('axios').default;
 
 // Delete confirmation page for species
 // Uses a function instead of class to make getting
 // the query parameters easier (useParams hook)
 const SpeciesDeleteForm = () => {
+
+    let navigate = useNavigate();
+
+    const handleSubmit = (event) => {
+        const msg = toast.loading("Deleting record...");
+        event.preventDefault();
+        axios({
+            method: "delete",
+            url: "/api/species",
+            data: {id}
+        })
+            .then((res) => {
+                if(res.status !== 200){
+                    toast.update(msg, { render: "Something went wrong!", type: "error", isLoading: false, autoClose: 3000 });
+                } else {
+                    navigate("/species/success");
+                }
+                
+            })
+            .catch((err) => {
+                toast.update(msg, { render: "Something went wrong!", type: "error", isLoading: false, autoClose: 3000 });
+            })
+    }
 
     // Get id from url
     const { id, name, description } = useParams();
@@ -13,7 +39,8 @@ const SpeciesDeleteForm = () => {
     return (
         <div class="container">
             <h1 class="text-center">Delete Species</h1>
-            <SpeciesButtonGroup />
+            <SpeciesButtonsGroup />
+            <ToastContainer />
             <div class="container text-left">
                 <div class="row">
                     <div class="col">
@@ -22,7 +49,7 @@ const SpeciesDeleteForm = () => {
                 </div>
                 <div class="row">
                     <div class="col-sm">
-                        <p class="bold">species_id</p>
+                        <p class="bold">Species ID</p>
                     </div>
                     <div class="col-sm">
                         <p>{id}</p>
@@ -30,7 +57,7 @@ const SpeciesDeleteForm = () => {
                 </div>
                 <div class="row">
                     <div class="col-sm">
-                        <p class="bold">name</p>
+                        <p class="bold">Name</p>
                     </div>
                     <div class="col-sm">
                         <p>{name}</p>
@@ -38,15 +65,14 @@ const SpeciesDeleteForm = () => {
                 </div>
                 <div class="row">
                     <div class="col-sm">
-                        <p class="bold">description</p>
+                        <p class="bold">Description</p>
                     </div>
                     <div class="col-sm">
                         <p>{description}</p>
                     </div>
                 </div>
-            
-            
-                <button type="submit" class="btn btn-danger">Delete record</button>
+                <button onClick={(e) => {handleSubmit(e)}} 
+                    type="submit" class="btn btn-danger">Delete record</button>
             </div>
 
         </div>    

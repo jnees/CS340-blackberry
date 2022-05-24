@@ -1,19 +1,46 @@
 import { React } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import SightingsButtonsGroup from '../button_groups/sightings_buttons';
+const axios = require('axios').default;
 
-// Delete confirmation page for species
+// Delete confirmation page for sightings
 // Uses a function instead of class to make getting
 // the query parameters easier (useParams hook)
 const SightingsDeleteForm = () => {
 
+    let navigate = useNavigate();
+
+    const handleSubmit = (event) => {
+        const msg = toast.loading("Deleting record...");
+        event.preventDefault();
+        axios({
+            method: "delete",
+            url: "/api/sightings",
+            data: {id}
+        })
+            .then((res) => {
+                if(res.status !== 200){
+                    toast.update(msg, { render: "Something went wrong!", type: "error", isLoading: false, autoClose: 3000 });
+                } else {
+                    navigate("/sightings/success");
+                }
+                
+            })
+            .catch((err) => {
+                toast.update(msg, { render: "Something went wrong!", type: "error", isLoading: false, autoClose: 3000 });
+            })
+    }
+
     // Get id from url
-    const { id, datetime, latitude, longitude, researcher_id, whale_ids } = useParams();
+    const { id, datetime, latitude, longitude, whale_name, researcher_name } = useParams();
 
     return (
         <div class="container">
             <h1 class="text-center">Delete Sighting</h1>
             <SightingsButtonsGroup />
+            <ToastContainer />
             <div class="container text-left">
                 <div class="row">
                     <div class="col">
@@ -22,7 +49,7 @@ const SightingsDeleteForm = () => {
                 </div>
                 <div class="row">
                     <div class="col-sm">
-                        <p class="bold">sighting_id</p>
+                        <p class="bold">Sighting ID</p>
                     </div>
                     <div class="col-sm">
                         <p>{id}</p>
@@ -30,7 +57,7 @@ const SightingsDeleteForm = () => {
                 </div>
                 <div class="row">
                     <div class="col-sm">
-                        <p class="bold">datetime</p>
+                        <p class="bold">Date and Time</p>
                     </div>
                     <div class="col-sm">
                         <p>{datetime}</p>
@@ -38,7 +65,7 @@ const SightingsDeleteForm = () => {
                 </div>
                 <div class="row">
                     <div class="col-sm">
-                        <p class="bold">latitude</p>
+                        <p class="bold">Latitude</p>
                     </div>
                     <div class="col-sm">
                         <p>{latitude}</p>
@@ -46,7 +73,7 @@ const SightingsDeleteForm = () => {
                 </div>
                 <div class="row">
                     <div class="col-sm">
-                        <p class="bold">longitude</p>
+                        <p class="bold">Longitude</p>
                     </div>
                     <div class="col-sm">
                         <p>{longitude}</p>
@@ -54,21 +81,22 @@ const SightingsDeleteForm = () => {
                 </div>
                 <div class="row">
                     <div class="col-sm">
-                        <p class="bold">researcher_id</p>
+                        <p class="bold">Whale Name</p>
                     </div>
                     <div class="col-sm">
-                        <p>{researcher_id}</p>
+                        <p>{whale_name}</p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm">
-                        <p class="bold">whale_ids</p>
+                        <p class="bold">Researcher Name</p>
                     </div>
                     <div class="col-sm">
-                        <p>{whale_ids}</p>
+                        <p>{researcher_name}</p>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-danger">Delete record</button>
+                <button onClick={(e) => {handleSubmit(e)}} 
+                    type="submit" class="btn btn-danger">Delete record</button>
             </div>
 
         </div>    

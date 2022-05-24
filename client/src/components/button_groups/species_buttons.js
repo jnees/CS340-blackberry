@@ -11,7 +11,7 @@ export default class SpeciesButtonGroup extends React.Component {
                 <a class="nav-link active" aria-current="page" href="/species">Refresh</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/species/insert">Insert</a>
+                <a class="nav-link" href="/species/insert">Add New</a>
               </li>
             </ul>
         </div>

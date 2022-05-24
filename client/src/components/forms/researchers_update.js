@@ -15,7 +15,6 @@ const ResearchersUpdateForm = () => {
     const handleSubmit = async (event) => {
         const msg = toast.loading("Updating record...");
         
-        dataValidation();
         event.preventDefault();
         axios({
             method: "put",
@@ -32,10 +31,6 @@ const ResearchersUpdateForm = () => {
             .catch((err) => {
                 toast.update(msg, { render: "Something went wrong!", type: "error", isLoading: false, autoClose: 3000 });
             });
-    }
-
-    const dataValidation = () => {
-        // TODO: DATA VALIDATION
     }
 
     // Get id from url
@@ -91,7 +86,7 @@ const ResearchersUpdateForm = () => {
                     />
                 </div>
                 <button onClick={(e) => {handleSubmit(e)}} type="submit" 
-                    class="btn btn-warning">Modify record</button>
+                    class="btn btn-warning">Edit record</button>
             </form>
             </div>
     </div>

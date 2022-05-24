@@ -11,7 +11,7 @@ export default class ResearchersButtonsGroup extends React.Component {
                 <a class="nav-link active" aria-current="page" href="/researchers">Refresh</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/researchers/insert">Insert</a>
+                <a class="nav-link" href="/researchers/insert">Add New</a>
               </li>
             </ul>
         </div>

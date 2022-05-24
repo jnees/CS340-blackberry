@@ -27,11 +27,15 @@ router.get("/", (req, res) => {
 // @route POST api/researchers
 // @desc Insert records into researchers
 router.post("/", (req, res) => {
+
+    cleanedFirstName = req.body.first_name.replace(/'/g, "''");
+    cleanedLastName = req.body.last_name.replace(/'/g, "''");
+
     console.log("Insert researchers request: ", req.body.first_name, 
                 req.body.last_name, req.body.email, req.body.organization_id);
 
     let SQL = `INSERT INTO Researchers ("first_name", "last_name", "email", "organization_id") \
-    VALUES ('${req.body.first_name}', '${req.body.last_name}', \
+    VALUES ('${cleanedFirstName}', '${cleanedLastName}', \
     '${req.body.email}', '${req.body.organization_id}');`
     
     return pool.query(SQL)
@@ -49,10 +53,13 @@ router.post("/", (req, res) => {
 // @desc Update records in researchers
 router.put("/", (req, res) => {
     console.log("Update researcher request: ", req.body);
+
+    cleanedFirstName = req.body.newFirstName.replace(/'/g, "''");
+    cleanedLastName = req.body.newLastName.replace(/'/g, "''");
     
     let SQL = `UPDATE Researchers SET \
-               "first_name" = '${req.body.newFirstName}', \
-               "last_name" = '${req.body.newLastName}', \
+               "first_name" = '${cleanedFirstName}', \
+               "last_name" = '${cleanedLastName}', \
                "email" = '${req.body.newEmail}', \
                "organization_id" = '${req.body.newOrganization}' \
                WHERE "researcher_id" = '${req.body.id}'`

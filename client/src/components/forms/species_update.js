@@ -1,14 +1,40 @@
 import {React, useState} from 'react';
-import { useParams } from 'react-router-dom';
-import SpeciesButtonGroup from '../button_groups/species_buttons';
+import { useParams, useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import SpeciesButtonsGroup from '../button_groups/species_buttons';
+const axios = require('axios').default;
 
 // Form for modifying a record in the species table. Prepopulates the existing record.
 // Uses a function instead of class to make getting
 // the query parameters easier (useParams hook)
 const SpeciesUpdateForm = () => {
 
+    let navigate = useNavigate();
+
+    const handleSubmit = async (event) => {
+        const msg = toast.loading("Updating record...");
+        
+        event.preventDefault();
+        axios({
+            method: "put",
+            url: "/api/species",
+            data: {id, newName, newDescription}
+        })
+            .then((res) => {
+                if (res.status !== 200){
+                    toast.update(msg, { render: "Something went wrong!", type: "error", isLoading: false, autoClose: 3000 });
+                } else {
+                    navigate("/species/success");
+                }
+            })
+            .catch((err) => {
+                toast.update(msg, { render: "Something went wrong!", type: "error", isLoading: false, autoClose: 3000 });
+            });
+    }
+
     // Get id from url
-    const { id, name, description } = useParams();
+    const { id, name, description} = useParams();
 
     // Initialize state
     const [newName, setName] = useState(name);
@@ -17,7 +43,8 @@ const SpeciesUpdateForm = () => {
     return (
         <div>
         <h1 class="text-center">Update Species</h1>
-        <SpeciesButtonGroup />
+        <SpeciesButtonsGroup />
+        <ToastContainer />
         <div class="container">
             <p>{"Update record for species_id " + id + " :"}</p>
         </div>
@@ -40,7 +67,8 @@ const SpeciesUpdateForm = () => {
                         onChange={e => setDescription(e.target.value)}
                     />
                 </div>
-                <button type="submit" class="btn btn-warning">Modify record</button>
+                <button onClick={(e) => {handleSubmit(e)}} type="submit" 
+                    class="btn btn-warning">Edit record</button>
             </form>
             </div>
     </div>

@@ -68,7 +68,7 @@ export default class Whales extends React.Component {
                     <a 
                       href={"/whales/update/" + row.whale_id + "/" + row.name + "/" + row.birthyear + "/" + row.is_female + "/" + row.is_transient + "/" + row.species_id} 
                       class="btn btn-light btn-md"
-                    >Modify</a>
+                    >Edit</a>
                   </td>
                   <td>
                     <a 
