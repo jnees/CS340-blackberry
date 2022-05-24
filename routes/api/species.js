@@ -2,80 +2,87 @@
 require("dotenv").config();
 const express = require("express");
 const router = express.Router();
-
-// Connect to db
-const { Client } = require('pg');
-const client = new Client({
-    connectionString: process.env.DATABASE_URL,
-    ssl:
-    {
-        rejectUnauthorized: false
-    }
-});
-client.connect().catch((e) => console.error("connection error", e.stack));
-client.on("error", (err) => console.log(err));
+const pool = require("../../db_pool.js")
 
 // @route GET api/species
 // @desc Get all records from the species table
 router.get("/", (req, res) => {
-    // console.log("Received species get req.")
-    // dummy_data = [
-    //     {
-    //         "species_id" : 1,
-    //         "name" : "Orca",
-    //         "description" : "Black-and-white patterned body."
-    //     },
-    //     {
-    //         "species_id" : 2,
-    //         "name" : "Gray",
-    //         "description" : "Gray patches and white mottling on dark skin."
-    //     },
-    //     {
-    //         "species_id" : 3,
-    //         "name" : "Humpback",
-    //         "description" : "Long pectoral fins and a knobbly head."
-    //     },
-    //     {
-    //         "species_id" : 4,
-    //         "name" : "Minke",
-    //         "description" : "Black to dark gray with a pale chevron on the back behind the head and above the flippers."
-    //     },
-    //     {
-    //         "species_id" : 5,
-    //         "name" : "Pacific White Sided Dolphin",
-    //         "description" : "Dark gray flippers and dorsal fin. Light gray patches on the sides."
-    //     }
-    // ]
-
-    // res.json(dummy_data);
-
-    let SQL = "SELECT * FROM Species;"
-    return client.query(SQL).then((result) => {
-        res.json(result.rows);
-    })
-    .catch((err) => {
-        console.error(err);
-    })
+    
+    const SQL = "SELECT * FROM Species;"
+    
+    return pool.query(SQL)
+        .then((result) => {
+            res.json(result.rows)
+        })
+        .catch((err) => {
+            console.log(err)
+        })
 });
 
 
 // @route POST api/species
 // @desc Insert records into species
 router.post("/", (req, res) => {
-   res.send("This route should handle adding data into the species table.")
+
+    cleanedDescription = req.body.description.replace(/'/g, "''");
+
+    console.log("Insert species request: ", req.body);
+
+    let SQL = `INSERT INTO Species ("name", "description") \
+    VALUES ('${req.body.name}', '${cleanedDescription}');` 
+    
+    return pool.query(SQL)
+        .then((db_res) => {
+            res.send("success");
+        })
+        .catch((err) =>{
+            console.log(err)
+            res.status(500).send("Error inserting record.")
+        });
 });
+
 
 // @route PUT api/species
 // @desc Update records in species
 router.put("/", (req, res) => {
-    res.send("This route should handle updating data in the species table.")
+
+    cleanedDescription = req.body.newDescription.replace(/'/g, "''");
+
+    console.log("Update species request: ", req.body);
+    
+    let SQL = `UPDATE Species SET \
+               "name" = '${req.body.newName}', \
+               "description" = '${cleanedDescription}' \
+               WHERE "species_id" = '${req.body.id}';`
+    
+    return pool.query(SQL)
+        .then((db_res) => {
+            console.log(db_res);
+            res.send("success");
+        })
+        .catch((err) =>{
+            console.log(err)
+            res.status(500).send("An error occured updating the record.")
+        });
  });
 
 
 // @route DELETE api/species
 // @desc Delete records from species
 router.delete("/", (req, res) => {
-    res.send("This route should handle updating data in the species table.")
+    console.log("Delete species id: ", req.body.id);
+    
+    let SQL = `DELETE FROM Species WHERE species_id = ${req.body.id}`
+
+    return pool.query(SQL)
+        .then((db_res) => {
+            console.log(db_res);
+            res.send("success");
+        })
+        .catch((err) =>{
+            console.log(err)
+            res.status(500).send('Error Updating Record')
+        });
  });
 
  module.exports = router;

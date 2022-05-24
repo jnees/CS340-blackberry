@@ -19,13 +19,8 @@ const WhalesInsertForm = () => {
         setSpecies("");
     }
     
-    const dataValidation = () => {
-        // TODO: DATA VALIDATION
-    }
-    
     const handleSubmit = async (event) => {
         const msg = toast.loading("Adding record...");
-        dataValidation();
         event.preventDefault();
         axios({
             method: "post",

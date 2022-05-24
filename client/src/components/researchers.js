@@ -5,7 +5,7 @@ import ResearchersButtonsGroup from './button_groups/researchers_buttons';
 const axios = require('axios').default;
 
 // Researchers table page
-export default class Reserachers extends React.Component {
+export default class Researchers extends React.Component {
 
   constructor(props){
     super(props);
@@ -65,7 +65,7 @@ export default class Reserachers extends React.Component {
                     <a 
                       href={"/researchers/update/" + row.researcher_id + "/" + row.first_name + "/" + row.last_name + "/" + row.email + "/" + row.organization_id} 
                       class="btn btn-light btn-md"
-                    >Modify</a>
+                    >Edit</a>
                   </td>
                   <td>
                     <a 

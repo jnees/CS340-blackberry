@@ -11,7 +11,7 @@ export default class SightingsButtonsGroup extends React.Component {
                 <a class="nav-link active" aria-current="page" href="/sightings">Refresh</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/sightings/insert">Insert</a>
+                <a class="nav-link" href="/sightings/insert">Add New</a>
               </li>
             </ul>
         </div>

@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import ResearchersButtonsGroup from '../button_groups/researchers_buttons';
 const axios = require('axios').default;
 
-// Form for inserting records into the species table.
+// Form for inserting records into the researchers table.
 const ResearchersInsertForm = () => {
     
     let navigate = useNavigate();
@@ -17,13 +17,8 @@ const ResearchersInsertForm = () => {
         setOrganizationID("");
     }
 
-    const dataValidation = () => {
-        // TODO: DATA VALIDATION
-    }
-
     const handleSubmit = async (event) => {
         const msg = toast.loading("Adding record...");
-        dataValidation();
         event.preventDefault();
         axios({
             method: "post",

@@ -42,13 +42,16 @@ function App() {
           <Route path="/whales" element={<Whales />} />
           <Route path="/whales/success" element={<Whales toast="Success"/>} />
           <Route path="/species" element={<Species />} />
+          <Route path="/species/success" element={<Species toast="Success"/>} />
           <Route path="/researchers" element={<Researchers />} />
           <Route path="/researchers/success" element={<Researchers toast="Success" />} />
           <Route path="/organizations" element={<Organizations />} />
           <Route path="/organizations/success" element={<Organizations toast="Success"/>} />
           <Route path="/sightings" element={<Sightings />} />
+          <Route path="/sightings/success" element={<Sightings toast="Success"/>} />
           <Route path='/sightings_whales' element={<SightingsWhales />} />
-          
+          <Route path='/sightings_whales/success' element={<SightingsWhales toast="Success"/>} />
+
           <Route path="/species/insert" element={<SpeciesInsertForm />} />
           <Route path="/whales/insert" element={<WhalesInsertForm />} />
           <Route path="/researchers/insert" element={<ResearchersInsertForm />} />
@@ -60,15 +63,15 @@ function App() {
           <Route path="/whales/update/:id/:name/:birthyear/:is_female/:is_transient/:species_id" element={<WhalesUpdateForm />} />
           <Route path="/researchers/update/:id/:first_name/:last_name/:email/:organization_id" element={<ResearchersUpdateForm />} />
           <Route path="/organizations/update/:id/:name/:type" element={<OrganizationsUpdateForm />} />
-          <Route path="/sightings/update/:id/:datetime/:latitude/:longitude/:researcher_id/:whale_ids" element={<SightingsUpdateForm />} />
-          <Route path="/sightings_whales/update/:id/:sighting_id/:whale_id" element={<SightingsWhalesUpdateForm />} />
+          <Route path="/sightings/update/:id/:datetime/:latitude/:longitude/:whale_name/:researcher_name" element={<SightingsUpdateForm />} />
+          <Route path="/sightings_whales/update/:id/:sighting_id/:whale_name" element={<SightingsWhalesUpdateForm />} />
 
           <Route path="/species/delete/:id/:name/:description" element={<SpeciesDeleteForm />} />
           <Route path="/whales/delete/:id/:name/:birthyear/:is_female/:is_transient/:species_id" element={<WhalesDeleteForm />} />
           <Route path="/researchers/delete/:id/:first_name/:last_name/:email/:organization_id" element={<ResearchersDeleteForm />} />
           <Route path="/organizations/delete/:id/:name/:type" element={<OrganizationsDeleteForm />} />
-          <Route path="/sightings/delete/:id/:datetime/:latitude/:longitude/:researcher_id/:whale_ids" element={<SightingsDeleteForm />} />
-          <Route path="/sightings_whales/delete/:id/:sighting_id/:whale_id" element={<SightingsWhalesDeleteForm />} />
+          <Route path="/sightings/delete/:id/:datetime/:latitude/:longitude/:whale_name/:researcher_name" element={<SightingsDeleteForm />} />
+          <Route path="/sightings_whales/delete/:id/:sighting_id/:whale_name" element={<SightingsWhalesDeleteForm />} />
 
         </Routes>
     </div>

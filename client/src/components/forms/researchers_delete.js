@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import ResearchersButtonsGroup from '../button_groups/researchers_buttons';
 const axios = require('axios').default;
 
-// Delete confirmation page for species
+// Delete confirmation page for researchers
 // Uses a function instead of class to make getting
 // the query parameters easier (useParams hook)
 const ResearchersDeleteForm = () => {

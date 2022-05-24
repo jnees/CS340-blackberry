@@ -1,5 +1,7 @@
 import React from 'react';
-import SightingsButtonGroup from './button_groups/sightings_buttons';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import SightingsButtonsGroup from './button_groups/sightings_buttons';
 const axios = require('axios').default;
 
 // Sightings table page
@@ -10,7 +12,7 @@ export default class Sightings extends React.Component {
 
     this.state = {
       data: [],
-      whales: []
+      toasted: false
     };
   }
 
@@ -20,54 +22,54 @@ export default class Sightings extends React.Component {
 
   async updateData() {
     const res = await axios.get('/api/sightings');
-    const whale_res = await axios.get('/api/whales');
-    this.setState({data: res.data, whales: whale_res.data})
+    this.setState({data: res.data});
+    this.showToast();
   };
+
+  showToast(){
+    if (this.props.toast === "Success" && !this.state.toasted){
+      this.setState({toasted: true});
+      const msg = toast.loading("Updating record...");
+      toast.update(msg, { render: "Success!", type: "success", isLoading: false, autoClose: 2000, closeOnClick: true, delay: 500})
+    }
+  }
     
   render() {
     return (
       <div class="container">
         <h1 class="text-center">Sightings</h1>
-        <SightingsButtonGroup />
-        <div class="select">
-          <select class="form-control" id="whale_id">
-            <option selected>Filter on whale</option>
-            {this.state.whales.map(row => 
-              <option>{row.whale_id + " - " + row.name}</option>
-            )}
-            
-          </select>
-        </div>
+        <SightingsButtonsGroup />
+        <ToastContainer />
         <table class="table">
           <thead>
             <tr>
-              <th scope="col">sighting_id</th>
-              <th scope="col">datetime</th>
-              <th scope="col">latitude</th>
-              <th scope="col">longitude</th>
-              <th scope="col">researcher_id</th>
-              <th scope="col">whale_ids</th>
+              <th scope="col">Sighting ID</th>
+              <th scope="col">Date and Time</th>
+              <th scope="col">Latitude</th>
+              <th scope="col">Longitude</th>
+              <th scope="col">Whale Name</th>
+              <th scope="col">Researcher Name</th>
             </tr>
           </thead>
           <tbody>
             {
               this.state.data.map(row => 
-                <tr>
+                <tr key={row.sighting_id}>
                   <th scope="row">{row.sighting_id}</th>
                   <td>{row.datetime}</td>
                   <td>{row.latitude}</td>
                   <td>{row.longitude}</td>
-                  <td>{row.researcher_id}</td>
-                  <td>{row.whale_ids}</td>
+                  <td>{row.whale_name}</td>
+                  <td>{row.researcher_name}</td>
                   <td>
                     <a 
-                      href={"/sightings/update/" + row.sighting_id + "/" + row.datetime + "/" + row.latitude + "/" + row.longitude + "/" + row.researcher_id + "/" + row.whale_ids} 
+                      href={"/sightings/update/" + row.sighting_id + "/" + row.datetime + "/" + row.latitude + "/" + row.longitude + "/" + row.whale_name + "/" + row.researcher_name} 
                       class="btn btn-light btn-md"
-                    >Modify</a>
+                    >Edit</a>
                   </td>
                   <td>
                     <a 
-                      href={"/sightings/delete/" +  row.sighting_id + "/" + row.datetime + "/" + row.latitude + "/" + row.longitude + "/" + row.researcher_id+ "/" + row.whale_ids}
+                      href={"/sightings/delete/" + row.sighting_id + "/" + row.datetime + "/" + row.latitude + "/" + row.longitude + "/" + row.whale_name + "/" + row.researcher_name}
                       class="btn btn-danger btn-md">Delete</a></td>
                 </tr>
               )
