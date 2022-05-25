@@ -15,7 +15,8 @@ router.get("/", (req, res) => {
                     LEFT JOIN Whales \
                         ON Sightings_Whales.whale_id = Whales.whale_id \
                     LEFT JOIN Researchers \
-                        ON Sightings.researcher_id = Researchers.researcher_id;"
+                        ON Sightings.researcher_id = Researchers.researcher_id \
+                ORDER BY 1 ASC;"
     
     return pool.query(SQL)
         .then((result) => {

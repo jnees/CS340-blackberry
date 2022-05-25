@@ -10,7 +10,8 @@ router.get("/", (req, res) => {
     
     const SQL = "SELECT Whales.*, Species.name AS species_name \
                  FROM Whales \
-                    Left Join Species ON Species.species_id = Whales.species_id;"
+                    Left Join Species ON Species.species_id = Whales.species_id \
+                ORDER BY 1 ASC;"
     
     return pool.query(SQL)
         .then((result) => {

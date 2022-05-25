@@ -1,22 +1,22 @@
 -- SELECT RECORDS --
 
 -- Query to retrieve all Species records (/species) 
-SELECT * FROM Species;
+SELECT * FROM Species ORDER BY 1 ASC;
 
 -- Query to retrieve all Organizations records (/organizations) 
-SELECT * FROM Organizations;
+SELECT * FROM Organizations ORDER BY 1 ASC;
 
 -- Query to retrieve all Whale records (/whales) 
-SELECT Whales.*, Species.name as species_name from Whales LEFT JOIN Species on Whales.species_id = Species.species_id;
+SELECT Whales.*, Species.name as species_name from Whales LEFT JOIN Species on Whales.species_id = Species.species_id ORDER BY 1 ASC;
 
 -- Query to retrieve all Researchers records (/researchers) 
-SELECT Researchers.*, Organizations.name AS organization_name FROM Researchers LEFT JOIN Organizations ON Researchers.organization_id = Organizations.organization_id;
+SELECT Researchers.*, Organizations.name AS organization_name FROM Researchers LEFT JOIN Organizations ON Researchers.organization_id = Organizations.organization_id ORDER BY 1 ASC;
 
 -- Query to retrieve all Sighting records (/sightings) 
-SELECT Sightings.*, Whales.name AS whale_name FROM Sightings INNER JOIN Whales ON Sightings.whale_id = Whales.whale_id;
+SELECT Sightings.*, Whales.name AS whale_name FROM Sightings INNER JOIN Whales ON Sightings.whale_id = Whales.whale_id ORDER BY 1 ASC;
 
 -- Query to retrieve Sightings records corresponding to applied filter of whale_id (/sightings) - ":" denotes data that will be passed from the web form via the backend
-SELECT Sightings.*, Whales.name AS whale_name FROM Sightings INNER JOIN Whales ON Sightings.whale_id = Whales.whale_id WHERE sighting_id IN(SELECT sighting_id FROM Sightings_Whales WHERE whale_id = :whale_id);
+SELECT Sightings.*, Whales.name AS whale_name FROM Sightings INNER JOIN Whales ON Sightings.whale_id = Whales.whale_id WHERE sighting_id IN(SELECT sighting_id FROM Sightings_Whales WHERE whale_id = :whale_id) ORDER BY 2, 1 ASC;
 
 
 -- CREATE NEW RECORDS --

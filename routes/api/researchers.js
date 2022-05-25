@@ -11,7 +11,8 @@ router.get("/", (req, res) => {
     const SQL = "SELECT Researchers.*, Organizations.name AS organization_name \
                 FROM Researchers \
                     LEFT JOIN Organizations \
-                        ON Researchers.organization_id = Organizations.organization_id;"
+                        ON Researchers.organization_id = Organizations.organization_id \
+                ORDER BY 1 ASC;"
     
     return pool.query(SQL)
         .then((result) => {

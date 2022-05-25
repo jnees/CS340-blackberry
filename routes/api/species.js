@@ -8,7 +8,7 @@ const pool = require("../../db_pool.js")
 // @desc Get all records from the species table
 router.get("/", (req, res) => {
     
-    const SQL = "SELECT * FROM Species;"
+    const SQL = "SELECT * FROM Species ORDER BY 1 ASC;"
     
     return pool.query(SQL)
         .then((result) => {
