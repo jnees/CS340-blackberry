@@ -12,7 +12,7 @@ router.get("/", (req, res) => {
                 FROM Sightings_whales \
                     LEFT JOIN Whales \
                         ON Sightings_Whales.whale_id = Whales.whale_id \
-                ORDER BY 2, 1;"
+                ORDER BY 1, 2;"
     
     return pool.query(SQL)
         .then((result) => {

@@ -16,7 +16,7 @@ SELECT Researchers.*, Organizations.name AS organization_name FROM Researchers L
 SELECT Sightings.*, Whales.name AS whale_name FROM Sightings INNER JOIN Whales ON Sightings.whale_id = Whales.whale_id ORDER BY 1 ASC;
 
 -- Query to retrieve Sightings records corresponding to applied filter of whale_id (/sightings) - ":" denotes data that will be passed from the web form via the backend
-SELECT Sightings.*, Whales.name AS whale_name FROM Sightings INNER JOIN Whales ON Sightings.whale_id = Whales.whale_id WHERE sighting_id IN(SELECT sighting_id FROM Sightings_Whales WHERE whale_id = :whale_id) ORDER BY 2, 1 ASC;
+SELECT Sightings.*, Whales.name AS whale_name FROM Sightings INNER JOIN Whales ON Sightings.whale_id = Whales.whale_id WHERE sighting_id IN(SELECT sighting_id FROM Sightings_Whales WHERE whale_id = :whale_id) ORDER BY 1, 2 ASC;
 
 
 -- CREATE NEW RECORDS --

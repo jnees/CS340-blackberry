@@ -42,8 +42,8 @@ export default class SightingsWhales extends React.Component {
           <table class="table">
             <thead>
               <tr>
-                <th scope="col">Sighting ID</th>
                 <th scope="col">Sighting Whale ID</th>
+                <th scope="col">Sighting ID</th>
                 <th scope="col">Whale Name</th>
               </tr>
             </thead>
@@ -51,8 +51,8 @@ export default class SightingsWhales extends React.Component {
               {
                 this.state.data.map(row => 
                   <tr>
-                    <th scope="row">{row.sighting_id}</th>
-                    <td>{row.sighting_whale_id}</td>
+                    <th scope="row">{row.sighting_whale_id}</th>
+                    <td>{row.sighting_id}</td>
                     <td>{row.whale_name}</td>
                     <td>
                       <a 
