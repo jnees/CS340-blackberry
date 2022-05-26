@@ -47,7 +47,6 @@ export default class Sightings extends React.Component {
               <th scope="col">Date and Time</th>
               <th scope="col">Latitude</th>
               <th scope="col">Longitude</th>
-              <th scope="col">Whale Name</th>
               <th scope="col">Researcher Name</th>
             </tr>
           </thead>
@@ -59,7 +58,6 @@ export default class Sightings extends React.Component {
                   <td>{row.datetime}</td>
                   <td>{row.latitude}</td>
                   <td>{row.longitude}</td>
-                  <td>{row.whale_name}</td>
                   <td>{row.researcher_name}</td>
                   <td>
                     <a 

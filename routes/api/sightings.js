@@ -8,12 +8,8 @@ const pool = require("../../db_pool.js")
 // @desc Get all records from the sightings table
 router.get("/", (req, res) => {
     
-    const SQL = "SELECT Sightings.*, Whales.name AS whale_name, CONCAT(Researchers.first_name, ' ', Researchers.last_name) AS researcher_name \
+    const SQL = "SELECT Sightings.*, CONCAT(Researchers.first_name, ' ', Researchers.last_name) AS researcher_name \
                 FROM Sightings \
-                    LEFT JOIN Sightings_Whales \
-                        ON Sightings.sighting_id = Sightings_Whales.sighting_id \
-                    LEFT JOIN Whales \
-                        ON Sightings_Whales.whale_id = Whales.whale_id \
                     LEFT JOIN Researchers \
                         ON Sightings.researcher_id = Researchers.researcher_id \
                 ORDER BY 1 ASC;"
