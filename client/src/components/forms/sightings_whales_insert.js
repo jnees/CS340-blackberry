@@ -58,6 +58,11 @@ const SightingsWhalesInsertForm = () => {
         if (whale_name === "") {
             return toast.update(msg, { render: "Must select a whale!", type: "error", isLoading: false, autoClose: 3000});
         }
+
+        // Validate sighting selected
+        if (sighting_id === "") {
+            return toast.update(msg, { render: "Must select a sighting!", type: "error", isLoading: false, autoClose: 3000});
+        }
             
         axios({
             method: "post",
