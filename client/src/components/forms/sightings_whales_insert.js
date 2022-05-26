@@ -16,7 +16,7 @@ const SightingsWhalesInsertForm = () => {
     const [whale_list, setWhaleList] = useState([]);
     const [sightings_list, setSightingsList] = useState([]);
 
-    useEffect((whale_list) => {
+    useEffect(() => {
         getWhaleData();
         getSightingsData();
     }, [])

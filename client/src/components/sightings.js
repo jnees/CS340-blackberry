@@ -15,7 +15,7 @@ export default class Sightings extends React.Component {
       toasted: false
     };
   }
-
+  
   componentDidMount() {
     this.updateData();
   }
@@ -63,12 +63,15 @@ export default class Sightings extends React.Component {
                     <a 
                       href={"/sightings/update/" + row.sighting_id + "/" + row.datetime + "/" + row.latitude + "/" + row.longitude + "/" + row.whale_name + "/" + row.researcher_name} 
                       class="btn btn-light btn-md"
-                    >Edit</a>
+                    >Edit
+                    </a>
                   </td>
                   <td>
                     <a 
                       href={"/sightings/delete/" + row.sighting_id + "/" + row.datetime + "/" + row.latitude + "/" + row.longitude + "/" + row.whale_name + "/" + row.researcher_name}
-                      class="btn btn-danger btn-md">Delete</a></td>
+                      class="btn btn-danger btn-md">Delete
+                    </a>
+                  </td>
                 </tr>
               )
             }
