@@ -88,7 +88,7 @@ const SightingsWhalesInsertForm = () => {
                             <option 
                                 key={sighting.sighting_id} 
                                 value={sighting.sighting_id}
-                            >{sighting.sighting_id}</option>
+                            >{sighting.sighting_id + ": " + Date(sighting.datetime) + " " + sighting.researcher_name}</option>
                         )}
                     </select>
                 </div>
