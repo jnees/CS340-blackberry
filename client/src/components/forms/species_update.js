@@ -12,8 +12,26 @@ const SpeciesUpdateForm = () => {
 
     let navigate = useNavigate();
 
+    // Get id from url
+    const { id, name, description} = useParams();
+
+    // Initialize state
+    const [newName, setName] = useState(name);
+    const [newDescription, setDescription] = useState(description)
+
     const handleSubmit = async (event) => {
         const msg = toast.loading("Updating record...");
+
+        // Validate name
+        if(newName === ""){
+            toast.update(msg, { render: "Species must have a name!", type: "error", isLoading: false, autoClose: 3000});
+            return
+        }
+
+        if(newDescription === ""){
+            toast.update(msg, { render: "Species must have a description!", type: "error", isLoading: false, autoClose: 3000});
+            return
+        }
         
         event.preventDefault();
         axios({
@@ -32,13 +50,6 @@ const SpeciesUpdateForm = () => {
                 toast.update(msg, { render: "Something went wrong!", type: "error", isLoading: false, autoClose: 3000 });
             });
     }
-
-    // Get id from url
-    const { id, name, description} = useParams();
-
-    // Initialize state
-    const [newName, setName] = useState(name);
-    const [newDescription, setDescription] = useState(description)
 
     return (
         <div>

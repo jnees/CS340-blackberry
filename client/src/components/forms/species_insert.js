@@ -10,6 +10,10 @@ const SpeciesInsertForm = () => {
     
     let navigate = useNavigate();
 
+    // Initialize state
+    const [name, setName] = useState("");
+    const [description, setDescription] = useState("");
+
     const clearState = () => {
         setName("");
         setDescription("");
@@ -18,6 +22,18 @@ const SpeciesInsertForm = () => {
     const handleSubmit = async (event) => {
         const msg = toast.loading("Adding record...");
         event.preventDefault();
+
+        // Validate name
+        if(name === ""){
+            toast.update(msg, { render: "Species must have a name!", type: "error", isLoading: false, autoClose: 3000});
+            return
+        }
+
+        if(description === ""){
+            toast.update(msg, { render: "Species must have a description!", type: "error", isLoading: false, autoClose: 3000});
+            return
+        }
+
         axios({
             method: "post",
             url: "/api/species",
@@ -31,10 +47,6 @@ const SpeciesInsertForm = () => {
                 toast.update(msg, { render: "Something went wrong!", type: "error", isLoading: false, autoClose: 3000})
             })
     }
-
-    // Initialize state
-    const [name, setName] = useState("");
-    const [description, setDescription] = useState("");
 
     return (
         <div>
