@@ -24,14 +24,6 @@ const SightingsInsertForm = () => {
         getWhalesData();
     }, [])
 
-    const clearState = () => {
-        setDatetime("");
-        setLatitude("");
-        setLongitude("");
-        setWhaleName("");
-        setResearcherName("")
-    }
-
     const getResearchersData = async () => {
         axios({
             method: "get", url: "/api/researchers",
