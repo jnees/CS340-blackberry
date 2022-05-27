@@ -14,12 +14,6 @@ const OrganizationsInsertForm = () => {
     const [name, setName] = useState("");
     const [type, setType] = useState("");
 
-    const clearState = () => {
-        setName("");
-        setType("");
-    }
-
-
     const handleSubmit = async (event) => {
       event.preventDefault();
       const msg = toast.loading("Adding record...");
