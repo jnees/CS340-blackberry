@@ -42,8 +42,11 @@ const OrganizationsInsertForm = () => {
           data: {name, type}
       })
           .then((res) => {
-              clearState();
+            if (res.status !== 200){
+              toast.update(msg, { render: "Something went wrong!", type: "error", isLoading: false, autoClose: 3000 });
+            } else {
               navigate("/organizations/success");
+            }
           })
           .catch((err) => {
               toast.update(msg, { render: "Something went wrong!", type: "error", isLoading: false, autoClose: 3000})

@@ -12,11 +12,29 @@ const OrganizationsUpdateForm = () => {
 
     let navigate = useNavigate();
 
+    // Get id from url
+    const { id, name, type } = useParams();
+
+    // Initialize state
+    const [newName, setName] = useState(name);
+    const [newType, setType] = useState(type)
+
     const handleSubmit = async (event) => {
-        const msg = toast.loading("Updating record...");
-        
-        dataValidation();
         event.preventDefault();
+        const msg = toast.loading("Updating record...");
+
+        // Validate name
+        if(newName === ""){
+            toast.update(msg, { render: "Organization must have a name!", type: "error", isLoading: false, autoClose: 3000});
+            return
+        }
+
+        // Validate type
+        if (newType === ""){
+            toast.update(msg, { render: "Organization must have a type!", type: "error", isLoading: false, autoClose: 3000});
+            return
+        }
+        
         axios({
             method: "put",
             url: "/api/organizations",
@@ -34,16 +52,6 @@ const OrganizationsUpdateForm = () => {
             });
     }
 
-    const dataValidation = () => {
-        // TODO: DATA VALIDATION
-    }
-
-    // Get id from url
-    const { id, name, type } = useParams();
-
-    // Initialize state
-    const [newName, setName] = useState(name);
-    const [newType, setType] = useState(type)
 
     return (
         <div>
@@ -58,22 +66,22 @@ const OrganizationsUpdateForm = () => {
             <form>
                 <div class="mb-3">
                     <label for="name" class="form-label">Name</label>
-                    <input 
-                        type="text" class="form-control" 
-                        id="name" value={newName} 
-                        onChange={e => setName(e.target.value)}   
+                    <input type="text" class="form-control" id="newName" 
+                        value={newName} onChange={e => setName(e.target.value)}
                     />
                 </div>
                 <div class="mb-3">
-                    <label for="description" class="form-label">Type</label>
-                    <input 
-                        type="text" class="form-control" 
-                        id="description" value={newType} 
-                        onChange={e => setType(e.target.value)}
-                    />
+                    <label for="type" class="form-label">Type</label>
+                    <select onChange={e => setType(e.target.value)} class="form-control" id="type">
+                            <option>{type}</option>
+                            {type !== "Educational" ? <option>Educational</option> : null}
+                            {type !== "Tourism" ? <option>Tourism</option> : null}
+                            {type !== "Non-Profit" ? <option>Non-Profit</option> : null}
+                            {type !== "Other" ? <option>Other</option> : null}
+                        </select>
                 </div>
                 <button onClick={(e) => {handleSubmit(e)}} 
-                    type="submit" class="btn btn-warning">Edit record</button>
+                    type="submit" class="btn btn-primary">Edit record</button>
             </form>
             </div>
     </div>
