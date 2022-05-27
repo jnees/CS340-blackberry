@@ -1,4 +1,4 @@
-import {React, useState} from 'react';
+import {React, useEffect, useState} from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -12,10 +12,55 @@ const ResearchersUpdateForm = () => {
 
     let navigate = useNavigate();
 
+    // Get id from url
+    const { id, first_name, last_name, email, organization_id} = useParams();
+
+    // Initialize state
+    const [newFirstName, setFirstName] = useState(first_name);
+    const [newLastName, setLastName] = useState(last_name);
+    const [newEmail, setEmail] = useState(email);
+    const [newOrganization, setOrganization] = useState(organization_id);
+    const [orgs_list, setOrgsList] = useState([]);
+
+    useEffect(() => {
+        getOrgsList();
+    }, [])
+
+    const getOrgsList = async () => {
+        axios({
+            method: "get", url: "/api/organizations",
+        })
+            .then((res) => {
+                setOrgsList(res.data);
+            })
+            .catch((err) => {
+                toast.error('Error getting organization names', {});
+            })
+    }
+
+
     const handleSubmit = async (event) => {
         const msg = toast.loading("Updating record...");
-        
         event.preventDefault();
+
+        // Validate Name
+        if (newFirstName === "" || newLastName === "") {
+            return toast.update(msg, { render: "Must enter a first and last name!", type: "error", isLoading: false, autoClose: 3000});
+        }
+
+        // Validate email
+        // CITATION: REGEX pattern for email source: https://stackoverflow.com/questions/46155/how-can-i-validate-an-email-address-in-javascript
+        const  mailformat =  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        
+        if (newEmail === "" || !newEmail.match(mailformat)) {
+            return toast.update(msg, { render: "Must enter a a valid email address!", type: "error", isLoading: false, autoClose: 3000});
+        }
+
+        // Validate Organization
+        if (newOrganization === ""){
+            return toast.update(msg, { render: "Must select an organization!", type: "error", isLoading: false, autoClose: 3000});
+        }
+
         axios({
             method: "put",
             url: "/api/researchers",
@@ -33,14 +78,6 @@ const ResearchersUpdateForm = () => {
             });
     }
 
-    // Get id from url
-    const { id, first_name, last_name, email, organization_id} = useParams();
-
-    // Initialize state
-    const [newFirstName, setFirstName] = useState(first_name);
-    const [newLastName, setLastName] = useState(last_name)
-    const [newEmail, setEmail] = useState(email)
-    const [newOrganization, setOrganization] = useState(organization_id)
 
     return (
         <div>
@@ -79,17 +116,21 @@ const ResearchersUpdateForm = () => {
                 </div>
                 <div class="mb-3">
                     <label for="organization_id" class="form-label">Organization ID</label>
-                    <input 
-                        type="number" class="form-control" 
-                        id="organization_id" value={newOrganization} 
-                        onChange={e => setOrganization(e.target.value)}
-                    />
+                    <select onChange={e => setOrganization(e.target.value)} class="form-control" id="organization_id">
+                        <option></option>
+                        {orgs_list.map((org) =>
+                            <option 
+                                key={org.organization_id} 
+                                value={org.organization_id}
+                            >{org.organization_id + "- " + org.name}</option>
+                        )}
+                    </select>
                 </div>
                 <button onClick={(e) => {handleSubmit(e)}} type="submit" 
                     class="btn btn-warning">Edit record</button>
             </form>
             </div>
-    </div>
+        </div>
     )
     
 }
