@@ -1,4 +1,4 @@
-import { React, useState} from 'react';
+import { React, useEffect, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -10,6 +10,13 @@ const ResearchersInsertForm = () => {
     
     let navigate = useNavigate();
 
+    // Initialize state
+    const [first_name, setFirstName] = useState("");
+    const [last_name, setLastName] = useState("");
+    const [email, setEmail] = useState("");
+    const [organization_id, setOrganizationID] = useState("");
+    const [orgs_list, setOrgsList] = useState([]);
+
     const clearState = () => {
         setFirstName("");
         setLastName("");
@@ -17,9 +24,44 @@ const ResearchersInsertForm = () => {
         setOrganizationID("");
     }
 
+    useEffect(() => {
+        getOrgsList();
+    }, [])
+
+    const getOrgsList = async () => {
+        axios({
+            method: "get", url: "/api/organizations",
+        })
+            .then((res) => {
+                setOrgsList(res.data);
+            })
+            .catch((err) => {
+                toast.error('Error getting organization names', {});
+            })
+    }
+
     const handleSubmit = async (event) => {
         const msg = toast.loading("Adding record...");
         event.preventDefault();
+
+        // Validate Name
+        if (first_name === "" || last_name === "") {
+            return toast.update(msg, { render: "Must enter a first and last name!", type: "error", isLoading: false, autoClose: 3000});
+        }
+
+        // Validate email
+        // CITATION: REGEX pattern for email source: https://stackoverflow.com/questions/46155/how-can-i-validate-an-email-address-in-javascript
+       const  mailformat =  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        
+        if (email === "" || !email.match(mailformat)) {
+            return toast.update(msg, { render: "Must enter a a valid email address!", type: "error", isLoading: false, autoClose: 3000});
+        }
+
+        // Validate Organization
+        if (organization_id === ""){
+            return toast.update(msg, { render: "Must select an organization!", type: "error", isLoading: false, autoClose: 3000});
+        }
+
         axios({
             method: "post",
             url: "/api/researchers",
@@ -34,11 +76,7 @@ const ResearchersInsertForm = () => {
             })
     }
 
-    // Initialize state
-    const [first_name, setFirstName] = useState("");
-    const [last_name, setLastName] = useState("");
-    const [email, setEmail] = useState("");
-    const [organization_id, setOrganizationID] = useState("");
+
 
     return (
         <div>
@@ -66,9 +104,15 @@ const ResearchersInsertForm = () => {
                 </div>
                 <div class="mb-3">
                     <label for="organization_id" class="form-label">Organization ID</label>
-                    <input type="number" class="form-control" id="organization_id" 
-                        value={organization_id} onChange={e => setOrganizationID(e.target.value)}
-                    />
+                    <select onChange={e => setOrganizationID(e.target.value)} class="form-control" id="organization_id">
+                        <option></option>
+                        {orgs_list.map(org =>
+                            <option 
+                                key={org.organization_id} 
+                                value={org.organization_id}
+                            >{org.organization_id + "- " + org.name}</option>
+                        )}
+                    </select>
                 </div>
                 <button onClick={(e) => {handleSubmit(e)}} type="submit" 
                     class="btn btn-primary">Add record</button>
