@@ -72,9 +72,6 @@ const SightingsInsertForm = () => {
             return toast.update(msg, { render: "Cannot set a future date", type: "error", isLoading: false, autoClose: 3000});
         }
 
-        // datetime.append(":00.000Z");
-        // console.log(datetime)
-
         // Validate Latitude
         if (latitude === "" || latitude < -90 || latitude > 90){
             return toast.update(msg, { render: "Must enter a valid latitude", type: "error", isLoading: false, autoClose: 3000});
@@ -101,12 +98,15 @@ const SightingsInsertForm = () => {
             data: {datetime, latitude, longitude, whale_name, researcher_name}
         })
             .then((res) => {
-                clearState();
-                navigate("/sightings/success");
+                if (res.status !== 200){
+                    toast.update(msg, { render: "Something went wrong!", type: "error", isLoading: false, autoClose: 3000 });
+                } else {
+                    navigate("/sightings/success");
+                }
             })
             .catch((err) => {
-                toast.update(msg, { render: "Something went wrong!", type: "error", isLoading: false, autoClose: 3000})
-            })
+                toast.update(msg, { render: "Something went wrong!", type: "error", isLoading: false, autoClose: 3000 });
+            });
     }
 
     return (
