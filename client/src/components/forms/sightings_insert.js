@@ -1,4 +1,4 @@
-import { React, useState} from 'react';
+import { React, useEffect, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -10,6 +10,17 @@ const SightingsInsertForm = () => {
     
     let navigate = useNavigate();
 
+    // Initialize state
+    const [datetime, setDatetime] = useState("");
+    const [latitude, setLatitude] = useState("");
+    const [longitude, setLongitude] = useState("");
+    const [researcher_name, setResearcherName] = useState("");
+    const [researchers_list, setResearchersList] = useState([]);
+
+    useEffect(() => {
+        getResearchersData();
+    }, [])
+
     const clearState = () => {
         setDatetime("");
         setLatitude("");
@@ -17,9 +28,39 @@ const SightingsInsertForm = () => {
         setResearcherName("")
     }
 
+    const getResearchersData = async () => {
+        axios({
+            method: "get", url: "/api/researchers",
+        })
+            .then((res) => {
+                setResearchersList(res.data);
+            })
+            .catch((err) => {
+                toast.error('Error getting whale names', {});
+            })
+    }
+
     const handleSubmit = async (event) => {
         const msg = toast.loading("Adding record...");
         event.preventDefault();
+
+        // Validate datetime
+        if (datetime === "") {
+            return toast.update(msg, { render: "Must select a date and time", type: "error", isLoading: false, autoClose: 3000});
+        }
+
+        const today = new Date();
+        const input_datetime = new Date(datetime);
+
+        if (input_datetime > today) {
+            return toast.update(msg, { render: "Cannot set a future date", type: "error", isLoading: false, autoClose: 3000});
+        }
+
+        // Validate Latitude
+        if (latitude === "" || latitude < 0 || latitude > 180){
+            return toast.update(msg, { render: "Must enter a valid latitude", type: "error", isLoading: false, autoClose: 3000});
+        }
+
         axios({
             method: "post",
             url: "/api/sightings",
@@ -33,12 +74,6 @@ const SightingsInsertForm = () => {
                 toast.update(msg, { render: "Something went wrong!", type: "error", isLoading: false, autoClose: 3000})
             })
     }
-
-    // Initialize state
-    const [datetime, setDatetime] = useState("");
-    const [latitude, setLatitude] = useState("");
-    const [longitude, setLongitude] = useState("");
-    const [researcher_name, setResearcherName] = useState("");
 
     return (
         <div>
