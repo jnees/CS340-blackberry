@@ -14,7 +14,6 @@ const SightingsInsertForm = () => {
         setDatetime("");
         setLatitude("");
         setLongitude("");
-        setWhaleName("");
         setResearcherName("")
     }
 
@@ -24,7 +23,7 @@ const SightingsInsertForm = () => {
         axios({
             method: "post",
             url: "/api/sightings",
-            data: {datetime, latitude, longitude, whale_name, researcher_name}
+            data: {datetime, latitude, longitude, researcher_name}
         })
             .then((res) => {
                 clearState();
@@ -39,7 +38,6 @@ const SightingsInsertForm = () => {
     const [datetime, setDatetime] = useState("");
     const [latitude, setLatitude] = useState("");
     const [longitude, setLongitude] = useState("");
-    const [whale_name, setWhaleName] = useState("");
     const [researcher_name, setResearcherName] = useState("");
 
     return (
@@ -51,7 +49,7 @@ const SightingsInsertForm = () => {
             <form>
                 <div class="mb-3">
                     <label for="datetime" class="form-label">Date and Time</label>
-                    <input type="text" class="form-control" id="datetime"
+                    <input type="datetime-local" class="form-control" id="datetime"
                         value={datetime} onChange={e => setDatetime(e.target.value)} />
                 </div>
                 <div class="mb-3">
@@ -64,12 +62,6 @@ const SightingsInsertForm = () => {
                     <label for="longitude" class="form-label">Longitude</label>
                     <input type="text" class="form-control" id="longitude" 
                         value={longitude} onChange={e => setLongitude(e.target.value)}
-                    />
-                </div>
-                <div class="mb-3">
-                    <label for="whale_name" class="form-label">Whale Name</label>
-                    <input type="text" class="form-control" id="whale_name" 
-                        value={whale_name} onChange={e => setWhaleName(e.target.value)}
                     />
                 </div>
                 <div class="mb-3">
