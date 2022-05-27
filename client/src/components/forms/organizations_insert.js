@@ -86,7 +86,7 @@ const OrganizationsInsertForm = () => {
                         <option></option>
                         <option>Educational</option>
                         <option>Tourism</option>
-                        <option>Non-profit</option>
+                        <option>Non-Profit</option>
                         <option>Other</option>
                     </select>
               </div>
