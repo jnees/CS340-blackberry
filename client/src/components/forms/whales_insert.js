@@ -92,47 +92,47 @@ const WhalesInsertForm = () => {
             <WhalesButtonsGroup />
             <ToastContainer />
             <div class="container">
-            <form>
-                <div class="mb-3">
-                    <label for="name" class="form-label">Name</label>
-                    <input type="text" class="form-control" id="name" 
-                        value={name} onChange={e => setName(e.target.value)} />
-                </div>
-                <div class="mb-3">
-                    <label for="birthyear" class="form-label">Birthyear</label>
-                    <input type="number" class="form-control" id="birthyear" 
-                        value={birthyear} onChange={e => setBirthyear(e.target.value)}/>
-                </div>
-                <div class="mb-3">
-                    <label for="is_female" class="form-label">Is Female</label>
-                    <select class="form-control" id="is_female" value={is_female}
-                        onChange={e => setGender(e.target.value)}>
-                        <option value="0">No</option>
-                        <option value="1">Yes</option>
-                    </select>
-                </div>
-                <div class="mb-3">
-                    <label for="is_transient" class="form-label">Is Transient</label>
-                    <select class="form-control" id="is_transient" value={is_transient}
-                        onChange={e => setTransient(e.target.value)}>
-                        <option value="0">No</option>
-                        <option value="1">Yes</option>
-                    </select>
-                </div>
-                <div class="mb-3">
-                    <label for="species_id" class="form-label">Species ID</label>
-                    <select onChange={e => setSpecies(e.target.value)} class="form-control" id="species_id">
-                        <option></option>
-                        {species_list.map(species =>
-                            <option 
-                                key={species.species_id} 
-                                value={species.species_id}
-                            >{species.species_id + "- " + species.name}</option>
-                        )}
-                    </select>
-                </div>
-                <button onClick={(e) => {handleSubmit(e)}} type="submit" class="btn btn-primary">Add record</button>
-            </form>
+                <form>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="name" 
+                            value={name} onChange={e => setName(e.target.value)} />
+                    </div>
+                    <div class="mb-3">
+                        <label for="birthyear" class="form-label">Birthyear</label>
+                        <input type="number" class="form-control" id="birthyear" 
+                            value={birthyear} onChange={e => setBirthyear(e.target.value)}/>
+                    </div>
+                    <div class="mb-3">
+                        <label for="is_female" class="form-label">Is Female</label>
+                        <select class="form-control" id="is_female" value={is_female}
+                            onChange={e => setGender(e.target.value)}>
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="is_transient" class="form-label">Is Transient</label>
+                        <select class="form-control" id="is_transient" value={is_transient}
+                            onChange={e => setTransient(e.target.value)}>
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="species_id" class="form-label">Species ID</label>
+                        <select onChange={e => setSpecies(e.target.value)} class="form-control" id="species_id">
+                            <option></option>
+                            {species_list.map(species =>
+                                <option 
+                                    key={species.species_id} 
+                                    value={species.species_id}
+                                >{species.species_id + "- " + species.name}</option>
+                            )}
+                        </select>
+                    </div>
+                    <button onClick={(e) => {handleSubmit(e)}} type="submit" class="btn btn-primary">Add record</button>
+                </form>
             </div>
         </div>
       ) 
