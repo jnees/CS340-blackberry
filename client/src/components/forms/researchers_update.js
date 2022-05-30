@@ -19,7 +19,7 @@ const ResearchersUpdateForm = () => {
     const [newFirstName, setFirstName] = useState(first_name);
     const [newLastName, setLastName] = useState(last_name);
     const [newEmail, setEmail] = useState(email);
-    const [newOrganization, setOrganization] = useState(organization_id);
+    const [newOrganization, setOrganization] = useState(organization_id === "null" ? "": organization_id);
     const [orgs_list, setOrgsList] = useState([]);
 
     useEffect(() => {
@@ -56,11 +56,6 @@ const ResearchersUpdateForm = () => {
             return toast.update(msg, { render: "Must enter a a valid email address!", type: "error", isLoading: false, autoClose: 3000});
         }
 
-        // Validate Organization
-        if (newOrganization === ""){
-            return toast.update(msg, { render: "Must select an organization!", type: "error", isLoading: false, autoClose: 3000});
-        }
-
         axios({
             method: "put",
             url: "/api/researchers",
@@ -78,6 +73,15 @@ const ResearchersUpdateForm = () => {
             });
     }
 
+    const option_item = (organization_id, org_organization_id, org_name) => {
+        if (org_organization_id.toString() === organization_id.toString()){
+            return <option selected key={org_organization_id} value={org_organization_id}>
+                {org_organization_id + "- " + org_name}</option>
+        } else {
+            return <option key={org_organization_id} value={org_organization_id}>
+                {org_organization_id + "- " + org_name}</option>
+        }
+    }
 
     return (
         <div>
@@ -117,12 +121,9 @@ const ResearchersUpdateForm = () => {
                 <div class="mb-3">
                     <label for="organization_id" class="form-label">Organization ID</label>
                     <select onChange={e => setOrganization(e.target.value)} class="form-control" id="organization_id">
-                        <option></option>
+                        <option key="NULL" value="">NULL</option>
                         {orgs_list.map((org) =>
-                            <option 
-                                key={org.organization_id} 
-                                value={org.organization_id}
-                            >{org.organization_id + "- " + org.name}</option>
+                            option_item(organization_id, org.organization_id, org.name)
                         )}
                     </select>
                 </div>

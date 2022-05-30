@@ -57,11 +57,6 @@ const ResearchersInsertForm = () => {
             return toast.update(msg, { render: "Must enter a a valid email address!", type: "error", isLoading: false, autoClose: 3000});
         }
 
-        // Validate Organization
-        if (organization_id === ""){
-            return toast.update(msg, { render: "Must select an organization!", type: "error", isLoading: false, autoClose: 3000});
-        }
-
         axios({
             method: "post",
             url: "/api/researchers",
@@ -105,7 +100,7 @@ const ResearchersInsertForm = () => {
                 <div class="mb-3">
                     <label for="organization_id" class="form-label">Organization ID</label>
                     <select onChange={e => setOrganizationID(e.target.value)} class="form-control" id="organization_id">
-                        <option></option>
+                        <option key="NULL" value="">NULL</option>
                         {orgs_list.map(org =>
                             <option 
                                 key={org.organization_id} 
