@@ -63,14 +63,14 @@ function App() {
           <Route path="/whales/update/:id/:name/:birthyear/:is_female/:is_transient/:species_id" element={<WhalesUpdateForm />} />
           <Route path="/researchers/update/:id/:first_name/:last_name/:email/:organization_id" element={<ResearchersUpdateForm />} />
           <Route path="/organizations/update/:id/:name/:type" element={<OrganizationsUpdateForm />} />
-          <Route path="/sightings/update/:id/:datetime/:latitude/:longitude/:whale_name/:researcher_name" element={<SightingsUpdateForm />} />
+          <Route path="/sightings/update/:id/:datetime/:latitude/:longitude/:researcher_name" element={<SightingsUpdateForm />} />
           <Route path="/sightings_whales/update/:id/:sighting_id/:whale_name" element={<SightingsWhalesUpdateForm />} />
 
           <Route path="/species/delete/:id/:name/:description" element={<SpeciesDeleteForm />} />
           <Route path="/whales/delete/:id/:name/:birthyear/:is_female/:is_transient/:species_id" element={<WhalesDeleteForm />} />
           <Route path="/researchers/delete/:id/:first_name/:last_name/:email/:organization_id" element={<ResearchersDeleteForm />} />
           <Route path="/organizations/delete/:id/:name/:type" element={<OrganizationsDeleteForm />} />
-          <Route path="/sightings/delete/:id/:datetime/:latitude/:longitude/:whale_name/:researcher_name" element={<SightingsDeleteForm />} />
+          <Route path="/sightings/delete/:id/:datetime/:latitude/:longitude/:researcher_name" element={<SightingsDeleteForm />} />
           <Route path="/sightings_whales/delete/:id/:sighting_id/:whale_name" element={<SightingsWhalesDeleteForm />} />
 
         </Routes>

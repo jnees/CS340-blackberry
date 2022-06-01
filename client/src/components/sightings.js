@@ -61,14 +61,14 @@ export default class Sightings extends React.Component {
                   <td>{row.researcher_name}</td>
                   <td>
                     <a 
-                      href={"/sightings/update/" + row.sighting_id + "/" + row.datetime + "/" + row.latitude + "/" + row.longitude + "/" + row.whale_name + "/" + row.researcher_name} 
+                      href={"/sightings/update/" + row.sighting_id + "/" + row.datetime + "/" + row.latitude + "/" + row.longitude + "/"+ row.researcher_name} 
                       class="btn btn-light btn-md"
                     >Edit
                     </a>
                   </td>
                   <td>
                     <a 
-                      href={"/sightings/delete/" + row.sighting_id + "/" + row.datetime + "/" + row.latitude + "/" + row.longitude + "/" + row.whale_name + "/" + row.researcher_name}
+                      href={"/sightings/delete/" + row.sighting_id + "/" + row.datetime + "/" + row.latitude + "/" + row.longitude + "/" + row.researcher_name}
                       class="btn btn-danger btn-md">Delete
                     </a>
                   </td>
