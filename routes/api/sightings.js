@@ -28,21 +28,15 @@ router.get("/", (req, res) => {
 // @desc Insert records into sightings
 router.post("/", (req, res) => {
 
-    cleanedWhaleName = req.body.whale_name.replace(/'/g, "''");
     researcherNames = req.body.researcher_name.split(" ")
     cleanedResearcherFirstName = researcherNames[0].replace(/'/g, "''");
     cleanedResearcherLastName = researcherNames[1].replace(/'/g, "''")
 
     console.log("Insert sighting request: ", req.body);
 
-    let SQL = `WITH new_sighting as ( \
-        INSERT INTO Sightings ("datetime", "latitude", "longitude", "researcher_id") \
+    let SQL = `INSERT INTO Sightings ("datetime", "latitude", "longitude", "researcher_id") \
         VALUES ('${req.body.datetime}', '${req.body.latitude}', \
-        '${req.body.longitude}', (SELECT researcher_id FROM Researchers WHERE first_name = '${cleanedResearcherFirstName}' AND last_name = '${cleanedResearcherLastName}')) \
-        RETURNING sighting_id) \
-        INSERT INTO Sightings_Whales ("sighting_id", "whale_id") \
-        SELECT sighting_id, (SELECT whale_id FROM Whales WHERE name = '${cleanedWhaleName}') \
-        FROM new_sighting;`
+        '${req.body.longitude}', (SELECT researcher_id FROM Researchers WHERE first_name = '${cleanedResearcherFirstName}' AND last_name = '${cleanedResearcherLastName}'));` 
     
     return pool.query(SQL)
         .then((db_res) => {
@@ -61,7 +55,6 @@ router.put("/", (req, res) => {
 
     console.log("Update sighting request: ", req.body);
 
-    cleanedWhaleName = req.body.newWhaleName.replace(/'/g, "''");
     researcherNames = req.body.newResearcherName.split(" ")
     cleanedResearcherFirstName = researcherNames[0].replace(/'/g, "''");
     cleanedResearcherLastName = researcherNames[1].replace(/'/g, "''")

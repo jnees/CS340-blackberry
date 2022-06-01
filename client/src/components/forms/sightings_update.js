@@ -13,20 +13,17 @@ const SightingsUpdateForm = () => {
     let navigate = useNavigate();
 
     // Get id from url
-    const { id, datetime, latitude, longitude, whale_name, researcher_name} = useParams();
+    const { id, datetime, latitude, longitude, researcher_name} = useParams();
 
     // Initialize state
     const [newDatetime, setDatetime] = useState(datetime);
     const [newLatitude, setLatitude] = useState(latitude);
     const [newLongitude, setLongitude] = useState(longitude);
-    const [newWhaleName, setWhaleName] = useState(whale_name);
     const [newResearcherName, setResearcherName] = useState(researcher_name);
     const [researchers_list, setResearchersList] = useState([]);
-    const [whales_list, setWhalesList] = useState([]);
 
     useEffect(() => {
         getResearchersData();
-        getWhalesData();
     }, [])
 
     const getResearchersData = async () => {
@@ -38,18 +35,6 @@ const SightingsUpdateForm = () => {
             })
             .catch((err) => {
                 toast.error('Error getting researcher names', {});
-            })
-    }
-
-    const getWhalesData = async () => {
-        axios({
-            method: "get", url: "/api/whales",
-        })
-            .then((res) => {
-                setWhalesList(res.data);
-            })
-            .catch((err) => {
-                toast.error('Error getting whale names', {});
             })
     }
 
@@ -79,11 +64,6 @@ const SightingsUpdateForm = () => {
             return toast.update(msg, { render: "Must enter a valid longitude", type: "error", isLoading: false, autoClose: 3000});
         }
 
-        // Validate Whale name
-        if (newWhaleName === ""){
-            return toast.update(msg, { render: "Must select a valid whale", type: "error", isLoading: false, autoClose: 3000});
-        }
-
         // Validate Researcher
         if (newResearcherName === ""){
             return toast.update(msg, { render: "Must select a valid researcher", type: "error", isLoading: false, autoClose: 3000});
@@ -93,7 +73,7 @@ const SightingsUpdateForm = () => {
         axios({
             method: "put",
             url: "/api/sightings",
-            data: {id, newDatetime, newLatitude, newLongitude, newWhaleName, newResearcherName}
+            data: {id, newDatetime, newLatitude, newLongitude, newResearcherName}
         })
             .then((res) => {
                 if (res.status !== 200){
@@ -105,6 +85,17 @@ const SightingsUpdateForm = () => {
             .catch((err) => {
                 toast.update(msg, { render: "Something went wrong!", type: "error", isLoading: false, autoClose: 3000 });
             });
+    }
+
+    const researcher_option_item = (researcher_name, r_researcher_id, r_first_name, r_last_name) => {
+        if (r_first_name + " " + r_last_name === researcher_name){
+            return <option selected key={researcher_name} 
+            value={r_first_name + " " + r_last_name}> 
+                {r_researcher_id + "- " + r_first_name + " " + r_last_name}</option>
+        } else {
+            return <option key={r_researcher_id} value={r_first_name+ " " + r_last_name}>
+                {r_researcher_id + "- " + r_first_name + " " + r_last_name}</option>
+        }
     }
 
     return (
@@ -136,26 +127,11 @@ const SightingsUpdateForm = () => {
                     />
                 </div>
                 <div class="mb-3">
-                    <label for="newWhaleName" class="form-label">Whale Name</label>
-                    <select onChange={e => setWhaleName(e.target.value)} class="form-control" id="newWhaleName">
-                        <option></option>
-                        {whales_list.map(whale =>
-                            <option 
-                                key={whale.whale_id} 
-                                value={whale.name}
-                            >{whale.whale_id + "- " + whale.name}</option>
-                        )}
-                    </select>
-                </div>
-                <div class="mb-3">
                     <label for="newResearcherName" class="form-label">Researcher Name</label>
                     <select onChange={e => setResearcherName(e.target.value)} class="form-control" id="newResearcherName">
                         <option></option>
                         {researchers_list.map(researcher =>
-                            <option 
-                                key={researcher.researcher_id} 
-                                value={researcher.first_name + " " + researcher.last_name}
-                            >{researcher.researcher_id + "- " + researcher.first_name + " " + researcher.last_name}</option>
+                            researcher_option_item(researcher_name, researcher.researcher_id, researcher.first_name, researcher.last_name)
                         )}
                     </select>
                 </div>

@@ -15,13 +15,10 @@ const SightingsInsertForm = () => {
     const [latitude, setLatitude] = useState("");
     const [longitude, setLongitude] = useState("");
     const [researcher_name, setResearcherName] = useState("");
-    const [whale_name, setWhaleName] = useState("");
     const [researchers_list, setResearchersList] = useState([]);
-    const [whales_list, setWhalesList] = useState([]);
 
     useEffect(() => {
         getResearchersData();
-        getWhalesData();
     }, [])
 
     const getResearchersData = async () => {
@@ -36,17 +33,6 @@ const SightingsInsertForm = () => {
             })
     }
 
-    const getWhalesData = async () => {
-        axios({
-            method: "get", url: "/api/whales",
-        })
-            .then((res) => {
-                setWhalesList(res.data);
-            })
-            .catch((err) => {
-                toast.error('Error getting whale names', {});
-            })
-    }
 
     const handleSubmit = async (event) => {
         const msg = toast.loading("Adding record...");
@@ -74,11 +60,6 @@ const SightingsInsertForm = () => {
             return toast.update(msg, { render: "Must enter a valid longitude", type: "error", isLoading: false, autoClose: 3000});
         }
 
-        // Validate Whale name
-        if (whale_name === ""){
-            return toast.update(msg, { render: "Must select a valid whale", type: "error", isLoading: false, autoClose: 3000});
-        }
-
         // Validate Researcher
         if (researcher_name === ""){
             return toast.update(msg, { render: "Must select a valid researcher", type: "error", isLoading: false, autoClose: 3000});
@@ -87,7 +68,7 @@ const SightingsInsertForm = () => {
         axios({
             method: "post",
             url: "/api/sightings",
-            data: {datetime, latitude, longitude, whale_name, researcher_name}
+            data: {datetime, latitude, longitude, researcher_name}
         })
             .then((res) => {
                 if (res.status !== 200){
@@ -124,18 +105,6 @@ const SightingsInsertForm = () => {
                     <input type="text" class="form-control" id="longitude" 
                         value={longitude} onChange={e => setLongitude(e.target.value)}
                     />
-                </div>
-                <div class="mb-3">
-                    <label for="whale_name" class="form-label">Whale Name</label>
-                    <select onChange={e => setWhaleName(e.target.value)} class="form-control" id="whale_name">
-                        <option></option>
-                        {whales_list.map(whale =>
-                            <option 
-                                key={whale.whale_id} 
-                                value={whale.name}
-                            >{whale.whale_id + "- " + whale.name}</option>
-                        )}
-                    </select>
                 </div>
                 <div class="mb-3">
                     <label for="researcher_name" class="form-label">Researcher Name</label>

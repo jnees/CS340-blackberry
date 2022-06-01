@@ -34,7 +34,7 @@ const SightingsDeleteForm = () => {
     }
 
     // Get id from url
-    const { id, datetime, latitude, longitude, whale_name, researcher_name } = useParams();
+    const { id, datetime, latitude, longitude, researcher_name } = useParams();
 
     return (
         <div class="container">
@@ -77,14 +77,6 @@ const SightingsDeleteForm = () => {
                     </div>
                     <div class="col-sm">
                         <p>{longitude}</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm">
-                        <p class="bold">Whale Name</p>
-                    </div>
-                    <div class="col-sm">
-                        <p>{whale_name}</p>
                     </div>
                 </div>
                 <div class="row">
