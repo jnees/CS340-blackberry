@@ -1,7 +1,7 @@
 import React from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import OrganizationsButtonGroup from './button_groups/organizations_buttons';
+import OrganizationsButtonGroupMain from './button_groups/organizations_buttons_main';
 const axios = require('axios').default;
 
 // Organizations table page
@@ -38,14 +38,14 @@ export default class Organizations extends React.Component {
     return (
       <div class="container">
         <h1 class="text-center">Organizations</h1>
-        <OrganizationsButtonGroup />
+        <OrganizationsButtonGroupMain />
         <ToastContainer />
         <table class="table">
           <thead>
             <tr>
-              <th scope="col">organization_id</th>
-              <th scope="col">name</th>
-              <th scope="col">type</th>
+              <th scope="col">Organization ID</th>
+              <th scope="col">Name</th>
+              <th scope="col">Type</th>
             </tr>
           </thead>
           <tbody>

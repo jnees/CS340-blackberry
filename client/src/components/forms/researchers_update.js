@@ -128,7 +128,7 @@ const ResearchersUpdateForm = () => {
                     </select>
                 </div>
                 <button onClick={(e) => {handleSubmit(e)}} type="submit" 
-                    class="btn btn-warning">Edit record</button>
+                    class="btn btn-warning">Save</button>
             </form>
             </div>
         </div>

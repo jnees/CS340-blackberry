@@ -49,7 +49,7 @@ const OrganizationsDeleteForm = () => {
                 </div>
                 <div class="row">
                     <div class="col-sm">
-                        <p class="bold">organization_id</p>
+                        <p class="bold">Organization ID</p>
                     </div>
                     <div class="col-sm">
                         <p>{id}</p>
@@ -57,7 +57,7 @@ const OrganizationsDeleteForm = () => {
                 </div>
                 <div class="row">
                     <div class="col-sm">
-                        <p class="bold">name</p>
+                        <p class="bold">Name</p>
                     </div>
                     <div class="col-sm">
                         <p>{name}</p>
@@ -65,7 +65,7 @@ const OrganizationsDeleteForm = () => {
                 </div>
                 <div class="row">
                     <div class="col-sm">
-                        <p class="bold">type</p>
+                        <p class="bold">Type</p>
                     </div>
                     <div class="col-sm">
                         <p>{type}</p>

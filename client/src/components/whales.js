@@ -1,7 +1,7 @@
 import React from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import WhalesButtonGroup from './button_groups/whales_buttons';
+import WhalesButtonGroup from './button_groups/whales_buttons_main';
 const axios = require('axios').default;
 
 // Whales table page
@@ -44,13 +44,13 @@ export default class Whales extends React.Component {
         <table class="table">
           <thead>
             <tr>
-              <th scope="col">whale_id</th>
-              <th scope="col">name</th>
-              <th scope="col">birthyear</th>
-              <th scope="col">is_female</th>
-              <th scope="col">is_transient</th>
-              <th scope="col">species_id</th>
-              <th scope="col">species</th>
+              <th scope="col">Whale ID</th>
+              <th scope="col">Name</th>
+              <th scope="col">Birthyear</th>
+              <th scope="col">Sex</th>
+              <th scope="col">Transient</th>
+              <th scope="col">Species ID</th>
+              <th scope="col">Species Name</th>
             </tr>
           </thead>
           <tbody>
@@ -60,7 +60,7 @@ export default class Whales extends React.Component {
                   <th scope="row">{row.whale_id}</th>
                   <td>{row.name}</td>
                   <td>{row.birthyear}</td>
-                  <td>{row.is_female === 1 ? "Yes": "No"}</td>
+                  <td>{row.is_female === 1 ? "Female": "Male"}</td>
                   <td>{row.is_transient === 1 ? "Yes": "No"}</td>
                   <td>{row.species_id}</td>
                   <td>{row.species_name}</td>

@@ -49,7 +49,7 @@ const WhalesDeleteForm = () => {
                 </div>
                 <div class="row">
                     <div class="col-sm">
-                        <p class="bold">whale_id</p>
+                        <p class="bold">Whale ID</p>
                     </div>
                     <div class="col-sm">
                         <p>{id}</p>
@@ -57,7 +57,7 @@ const WhalesDeleteForm = () => {
                 </div>
                 <div class="row">
                     <div class="col-sm">
-                        <p class="bold">name</p>
+                        <p class="bold">Name</p>
                     </div>
                     <div class="col-sm">
                         <p>{name}</p>
@@ -65,7 +65,7 @@ const WhalesDeleteForm = () => {
                 </div>
                 <div class="row">
                     <div class="col-sm">
-                        <p class="bold">birthyear</p>
+                        <p class="bold">Birthyear</p>
                     </div>
                     <div class="col-sm">
                         <p>{birthyear}</p>
@@ -73,7 +73,7 @@ const WhalesDeleteForm = () => {
                 </div>
                 <div class="row">
                     <div class="col-sm">
-                        <p class="bold">is_female</p>
+                        <p class="bold">Is Female</p>
                     </div>
                     <div class="col-sm">
                         <p>{is_female}</p>
@@ -81,7 +81,7 @@ const WhalesDeleteForm = () => {
                 </div>
                 <div class="row">
                     <div class="col-sm">
-                        <p class="bold">is_transient</p>
+                        <p class="bold">Is Transient</p>
                     </div>
                     <div class="col-sm">
                         <p>{is_transient}</p>
@@ -89,7 +89,7 @@ const WhalesDeleteForm = () => {
                 </div>
                 <div class="row">
                     <div class="col-sm">
-                        <p class="bold">species_id</p>
+                        <p class="bold">Species ID</p>
                     </div>
                     <div class="col-sm">
                         <p>{species_id}</p>

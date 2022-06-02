@@ -81,7 +81,7 @@ const OrganizationsUpdateForm = () => {
                         </select>
                 </div>
                 <button onClick={(e) => {handleSubmit(e)}} 
-                    type="submit" class="btn btn-primary">Edit record</button>
+                    type="submit" class="btn btn-primary">Save</button>
             </form>
             </div>
     </div>

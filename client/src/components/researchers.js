@@ -1,7 +1,7 @@
 import React from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import ResearchersButtonsGroup from './button_groups/researchers_buttons';
+import ResearchersButtonsGroupMain from './button_groups/researchers_buttons_main';
 const axios = require('axios').default;
 
 // Researchers table page
@@ -38,17 +38,17 @@ export default class Researchers extends React.Component {
     return (
       <div class="container">
         <h1 class="text-center">Researchers</h1>
-        <ResearchersButtonsGroup />
+        <ResearchersButtonsGroupMain />
         <ToastContainer />
         <table class="table">
           <thead>
             <tr>
-              <th scope="col">researcher_id</th>
-              <th scope="col">first_name</th>
-              <th scope="col">last_name</th>
-              <th scope="col">email</th>
-              <th scope="col">organization_id</th>
-              <th scope="col">organization</th>
+              <th scope="col">Researcher ID</th>
+              <th scope="col">First Name</th>
+              <th scope="col">Last Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Organization ID</th>
+              <th scope="col">Organization Name</th>
             </tr>
           </thead>
           <tbody>

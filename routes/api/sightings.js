@@ -12,7 +12,7 @@ router.get("/", (req, res) => {
                 FROM Sightings \
                     LEFT JOIN Researchers \
                         ON Sightings.researcher_id = Researchers.researcher_id \
-                ORDER BY 1 ASC;"
+                    ORDER BY 1 ASC;"
     
     return pool.query(SQL)
         .then((result) => {

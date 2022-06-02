@@ -1,7 +1,7 @@
 import React from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import SpeciesButtonsGroup from './button_groups/species_buttons';
+import SpeciesButtonsGroupMain from './button_groups/species_buttons_main';
 const axios = require('axios').default;
 
 // Species table page
@@ -38,7 +38,7 @@ export default class Species extends React.Component {
     return (
       <div class="container">
         <h1 class="text-center">Species</h1>
-        <SpeciesButtonsGroup />
+        <SpeciesButtonsGroupMain />
         <ToastContainer />
         <table class="table">
           <thead>
