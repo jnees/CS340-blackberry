@@ -8,13 +8,7 @@ export default class SightingsButtonsGroup extends React.Component {
         <div>
             <ul class="nav justify-content-center">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/sightings">Refresh</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/sightings/insert">Add New</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/sightings_whales">Line-Item Details</a>
+                <a class="nav-link active" aria-current="page" href="/sightings">Cancel</a>
               </li>
             </ul>
         </div>

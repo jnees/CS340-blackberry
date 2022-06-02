@@ -119,7 +119,7 @@ const SightingsWhalesUpdateForm = () => {
                         </select>
                     </div>
                     <button onClick={(e) => {handleSubmit(e)}} type="submit" 
-                        class="btn btn-primary">Add record</button>
+                        class="btn btn-primary">Save</button>
                 </form>
             </div>
         </div>

@@ -1,8 +1,20 @@
 import React from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import SightingsWhalesButtonsGroup from './button_groups/sightings_whales_buttons';
+import SightingsWhalesButtonsGroupMain from './button_groups/sightings_whales_buttons_main';
 const axios = require('axios').default;
+
+function distinct(value, index, self) {
+  return self.indexOf(value) === index
+}
+
+function dedupeWhaleNames(data){
+  const whaleNames = data.map(row =>
+      row.whale_id + " - " + row.whale_name
+    )
+
+  return whaleNames.filter(distinct)
+}
 
 // Species Table page
 export default class SightingsWhales extends React.Component {
@@ -37,7 +49,7 @@ export default class SightingsWhales extends React.Component {
       return (
         <div class="container">
           <h1 class="text-center">Sightings_Whales</h1>
-          <SightingsWhalesButtonsGroup />
+          <SightingsWhalesButtonsGroupMain />
           <ToastContainer />
           <table class="table">
             <thead>

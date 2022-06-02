@@ -8,10 +8,7 @@ export default class SightingsWhalesButtonGroup extends React.Component {
         <div>
             <ul class="nav justify-content-center">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/sightings_whales">Refresh</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/sightings_whales/insert">Add New</a>
+                <a class="nav-link active" aria-current="page" href="/sightings_whales">Cancel</a>
               </li>
             </ul>
         </div>

@@ -1,8 +1,9 @@
 import React from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import SightingsButtonsGroup from './button_groups/sightings_buttons';
+import SightingsButtonsGroupMain from './button_groups/sightings_buttons_main';
 const axios = require('axios').default;
+
 
 // Sightings table page
 export default class Sightings extends React.Component {
@@ -33,12 +34,14 @@ export default class Sightings extends React.Component {
       toast.update(msg, { render: "Success!", type: "success", isLoading: false, autoClose: 2000, closeOnClick: true, delay: 500})
     }
   }
+
+
     
   render() {
     return (
       <div class="container">
         <h1 class="text-center">Sightings</h1>
-        <SightingsButtonsGroup />
+        <SightingsButtonsGroupMain />
         <ToastContainer />
         <table class="table">
           <thead>

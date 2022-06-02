@@ -49,7 +49,7 @@ const ResearchersDeleteForm = () => {
                 </div>
                 <div class="row">
                     <div class="col-sm">
-                        <p class="bold">researcher_id</p>
+                        <p class="bold">Researcher ID</p>
                     </div>
                     <div class="col-sm">
                         <p>{id}</p>
@@ -57,7 +57,7 @@ const ResearchersDeleteForm = () => {
                 </div>
                 <div class="row">
                     <div class="col-sm">
-                        <p class="bold">first_name</p>
+                        <p class="bold">First Name</p>
                     </div>
                     <div class="col-sm">
                         <p>{first_name}</p>
@@ -65,7 +65,7 @@ const ResearchersDeleteForm = () => {
                 </div>
                 <div class="row">
                     <div class="col-sm">
-                        <p class="bold">last_name</p>
+                        <p class="bold">Last Name</p>
                     </div>
                     <div class="col-sm">
                         <p>{last_name}</p>
@@ -73,7 +73,7 @@ const ResearchersDeleteForm = () => {
                 </div>
                 <div class="row">
                     <div class="col-sm">
-                        <p class="bold">email</p>
+                        <p class="bold">Email</p>
                     </div>
                     <div class="col-sm">
                         <p>{email}</p>
@@ -81,7 +81,7 @@ const ResearchersDeleteForm = () => {
                 </div>
                 <div class="row">
                     <div class="col-sm">
-                        <p class="bold">organization_id</p>
+                        <p class="bold">Organization ID</p>
                     </div>
                     <div class="col-sm">
                         <p>{organization_id}</p>
