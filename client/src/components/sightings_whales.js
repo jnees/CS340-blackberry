@@ -8,13 +8,6 @@ function distinct(value, index, self) {
   return self.indexOf(value) === index
 }
 
-function dedupeWhaleNames(data){
-  const whaleNames = data.map(row =>
-      row.whale_id + " - " + row.whale_name
-    )
-
-  return whaleNames.filter(distinct)
-}
 
 // Species Table page
 export default class SightingsWhales extends React.Component {
@@ -24,18 +17,54 @@ export default class SightingsWhales extends React.Component {
 
       this.state = {
         data: [],
+        whaleFilter: null,
+        filteredData: [],
+        uniqueWhaleNames: []
       };
     }
 
     componentDidMount() {
       this.updateData();
+      this.dedupeWhales();
     }
 
     async updateData() {
       const res = await axios.get('/api/sightings_whales');
-      this.setState({data: res.data})
+      this.setState(
+        {
+          data: res.data, 
+          filteredData: res.data,
+          uniqueWhaleNames: this.dedupeWhales()
+        })
+      console.log(this.state);
       this.showToast();
     };
+
+    // Adjusts state of filteredData based on user input
+    updateWhaleFilter(val){
+      // Empty filter -> set to show all data.
+      if (!val) {
+        this.setState(
+          {filteredData: this.state.data}
+        )
+        return;
+      }
+      
+      // User applied filter -> filter records by sighting_id
+      this.setState(
+        {
+          filteredData: this.state.data.filter(row => row.whale_name === val)
+        }
+      )
+    }
+
+    dedupeWhales(){
+      var whales = [];
+      // this.state.data.forEach(row => console.log(row.whale_name));
+      this.state.data.forEach(row => whales.push(row.whale_name));
+      var uniqueWhales = whales.filter(distinct);
+      return uniqueWhales.sort();
+    }
 
     showToast(){
       if (this.props.toast === "Success" && !this.state.toasted){
@@ -51,6 +80,11 @@ export default class SightingsWhales extends React.Component {
           <h1 class="text-center">Sightings_Whales</h1>
           <SightingsWhalesButtonsGroupMain />
           <ToastContainer />
+          <select onChange={e => this.updateWhaleFilter(e.target.value)}>
+            { this.state.uniqueWhaleNames.map(row =>
+              <option id={row}>{row}</option> 
+              )}
+          </select>
           <table class="table">
             <thead>
               <tr>
@@ -61,7 +95,7 @@ export default class SightingsWhales extends React.Component {
             </thead>
             <tbody>
               {
-                this.state.data.map(row => 
+                this.state.filteredData.map(row => 
                   <tr>
                     <th scope="row">{row.sighting_whale_id}</th>
                     <td>{row.sighting_id}</td>
