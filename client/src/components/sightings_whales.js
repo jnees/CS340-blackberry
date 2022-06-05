@@ -25,16 +25,17 @@ export default class SightingsWhales extends React.Component {
 
     componentDidMount() {
       this.updateData();
-      this.dedupeWhales();
+      // this.dedupeWhales();
     }
 
     async updateData() {
+      console.log("Update data called")
       const res = await axios.get('/api/sightings_whales');
       this.setState(
         {
           data: res.data, 
           filteredData: res.data,
-          uniqueWhaleNames: this.dedupeWhales()
+          uniqueWhaleNames: this.dedupeWhales(res.data)
         })
       console.log(this.state);
       this.showToast();
@@ -43,6 +44,7 @@ export default class SightingsWhales extends React.Component {
     // Adjusts state of filteredData based on user input
     updateWhaleFilter(val){
       // Empty filter -> set to show all data.
+      console.log(val)
       if (!val) {
         this.setState(
           {filteredData: this.state.data}
@@ -58,10 +60,9 @@ export default class SightingsWhales extends React.Component {
       )
     }
 
-    dedupeWhales(){
+    dedupeWhales(data){
       var whales = [];
-      // this.state.data.forEach(row => console.log(row.whale_name));
-      this.state.data.forEach(row => whales.push(row.whale_name));
+      data.forEach(row => whales.push(row.whale_name));
       var uniqueWhales = whales.filter(distinct);
       return uniqueWhales.sort();
     }
