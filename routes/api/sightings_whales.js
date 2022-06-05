@@ -1,19 +1,30 @@
-// This router handles all API requests involving CRUD operations to the researchers table
+// This router handles all API requests involving CRUD operations to the sightings_whales table
 require("dotenv").config();
 const express = require("express");
 const router = express.Router();
 const pool = require("../../db_pool.js")
 
-// @route GET api/researchers
-// @desc Get all records from the researchers table
+// @route GET api/sightings_whales
+// @desc Get all records from the sightings_whales table
 router.get("/", (req, res) => {
+    let SQL;
     
-    const SQL = "SELECT Sightings_Whales.*, Whales.name AS whale_name \
-                FROM Sightings_whales \
-                    LEFT JOIN Whales \
-                        ON Sightings_Whales.whale_id = Whales.whale_id \
-                ORDER BY 1, 2;"
-    
+    if (!req.body.whale_name){
+        SQL = "SELECT Sightings_Whales.*, Whales.name AS whale_name \
+        FROM Sightings_whales \
+            LEFT JOIN Whales \
+                ON Sightings_Whales.whale_id = Whales.whale_id \
+        ORDER BY 1, 2;"
+    } else {
+        SQL = `SELECT Sightings_Whales.*, Whales.name AS whale_name \
+        FROM Sightings_whales \
+            LEFT JOIN Whales \
+                ON Sightings_Whales.whale_id = Whales.whale_id \
+        WHERE Whales.whale_name == '${req.body.whale_name}' \
+        ORDER BY 1, 2;`
+    }
+
+
     return pool.query(SQL)
         .then((result) => {
             res.json(result.rows)
@@ -22,6 +33,7 @@ router.get("/", (req, res) => {
             console.log(err)
         })
 });
+
 
 
 // @route POST api/sightings_whales
