@@ -37,14 +37,12 @@ export default class SightingsWhales extends React.Component {
           filteredData: res.data,
           uniqueWhaleNames: this.dedupeWhales(res.data)
         })
-      console.log(this.state);
       this.showToast();
     };
 
     // Adjusts state of filteredData based on user input
     updateWhaleFilter(val){
       // Empty filter -> set to show all data.
-      console.log(val)
       if (!val) {
         this.setState(
           {filteredData: this.state.data}
@@ -81,11 +79,15 @@ export default class SightingsWhales extends React.Component {
           <h1 class="text-center">Sightings_Whales</h1>
           <SightingsWhalesButtonsGroupMain />
           <ToastContainer />
-          <select onChange={e => this.updateWhaleFilter(e.target.value)}>
-            { this.state.uniqueWhaleNames.map(row =>
-              <option id={row}>{row}</option> 
-              )}
-          </select>
+          <div>
+            <label for="whale-select" class="form-label">Filter on Whale Name</label>
+            <select id="whale-select" class="form-select" onChange={e => this.updateWhaleFilter(e.target.value)}>
+              <option value="">All Whales</option>
+              { this.state.uniqueWhaleNames.map(row =>
+                <option id={row}>{row}</option> 
+                )}
+            </select>
+          </div>
           <table class="table">
             <thead>
               <tr>
