@@ -1,6 +1,3 @@
-
-**
-
 # Project Blackberry [Live Demo](https://cs340-blackberry.herokuapp.com/)
 
 This is a class project for Oregon State University's CS340 Databases course. The goal was to design and implement an end-to-end data management solution for a hypothetical organization in order to track the things that they care about. As denizens of the Puget Sound, we decided to create an organization that would track whale sightings in the area.
